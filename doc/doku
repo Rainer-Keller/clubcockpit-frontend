@@ -1,0 +1,244 @@
+EAASDC Handbuch
+
+Einleitung
+
+Diskussionen und persönliche Kommentare bitte nicht hier in den Text scheiben sondern ins Forum oder
+per Mail an den jeweiligen Fachbereich.
+
+1. Organisation
+
+In der EAASDC gibt es die Fachbereiche
+
+* GEMA & EVents
+  Hier werden Anmeldungen von Events an die GEMA schickt in die Abrechnungen gemacht.
+  Ansprechpartner: Suanne
+* ERP
+  Ansprechpartner: Jürgen
+* IT-Abteilung:
+    CMS, Server, PHP, Datenbanken
+    Stefan, Paddy, Reinhard, Andreas, Rainer
+
+2. Arbeitsabläufe
+
+Hier sind die regelmäßigen Arbeitsabläufe der einzelnen Fachbereiche und Clubvertreter beschrieben.
+
+2.1 Clubvertreter
+
+2.1.1 Anmelden von Events
+
+Ein Clubvertreter meldet ein Event an. Hierzu kann entweder ein Papierformular ausgefüllt werden, welches auf der Homepage unter [...] heruntergeladen werden kann
+oder online eine Anmeldung im Club-Cockpit gemacht werden.
+Im Falle eines Papierformulares wird die Anmeldung duch G&E im Schritt 2.1.1 in den Computer eingegeben.
+Im Falle einer Onlineanmeldung wird G&E per eMail benachrichtigt und kann die Daten dann online einsehen und bestätigen.
+
+2.1 GEMA & Events
+
+2.1.1 Eventanmeldung in Papierform
+
+Clubvertreter können eine Anmeldung in Papierform schicken (siehe 2.1.1).
+G&E gibt diese dann mittels eines Onlineformulars (siehe X.X.X) ein.
+
+2.1.2 Eventamleldung Online
+
+Bei einer Onlineanmeldung wird G&E benachrichtigt.
+Die Angaben des Clubvertreters können dann online eingesehen und von G&E verifiziert werden.
+
+2.1.3 Bestätigung von Events
+
+Entgegengenommene Anmeldungen werden an die GEMA weitergeleitet. Nach Antwort der GEMA werden
+dann die Events als "bestätigt" eingetragen und eine Rückmeldung and den Club gegeben.
+
+3. Arbeitsabläufe Online
+
+Dieses Kapitel beschreibt die Anforderungen für alle Arbeitsabläufe, welche Online oder am Computer durchgeführt werden.
+
+3.1 Club-Cockpit
+
+Im Club-Cockpit haben die Clubvertreter die Möglichkeit alle Vorgänge online zu starten.
+
+3.1.0 Einstieg
+
+Diese Maske bildet den Einstieg in die Datenverwaltung für Clubvertreter.
+
+Angezeigt werden:
+  * Club Name
+  * Name in Groß
+  * Benutzername und Nummer
+  * Adresse mit Name, PLZ und Ort
+  * Telefon
+  * Email-Adresse
+  * Liste der angemeldeten Events
+  * Liste der angemeldeten Workshops
+  * Liste der angemeldeten Classes
+
+Von hier aus gibt es die Möglichkeit zu folgenden Unterseiten zu gelangen:
+
+  * Benutzerdaten ändern
+  * Erhebungsbogen Anzeigen
+  * Anmeldung eines neuen Events
+  * Anmeldung eines neuen Workshops
+  * Anmeldung einer neuen Class
+  * Abstimmungsbereich
+  * Dokumente und Informationen
+  * GEMA-Informationen
+
+3.1.1 Event anmelden
+
+Um ein Event anzumelden klickt der Clubvertreter auf "Event anmelden".
+Angezeigt werden:
+    * Club Name
+    * Name
+
+In der folgenden Eingabemaske werden Daten abgefragt:
+  * Art des Events (S, SCN, WS, C, CCN
+
+Für Specials werden dann abgefragt:
+
+  * Anzahl der Hallen pro Tag
+  * GEMA-Deckung anderweitig
+  * GEMA-Umlage als EUR und Freitextfeld
+  * Name der Veranstaltung
+  * Charter Dance
+  * Leader
+  * Tanzplatz
+  * Tanzplatz PLZ und Ort
+  * Kontakt (Telefon)
+  * Tanzprogramm BXX, MSXX, PL, A1,A2,C1,C2,C3A,C3B,C4,Contra, Round-text, Clogging-text, LD
+  * GEMA-Deckung(falls nicht EAASDC)
+  * veröffentlichung im Veranstaltungskalender
+  * Link zum Flyer
+  * Bemerkungen
+
+Für Special Club Night:
+
+  * Veranstaltungsdatum
+  * Name der Veranstaltung
+  * Leader
+  * Tanzplatz
+  * Tanzplatz PLZ + Ort
+  * Kontakt (Telefon)
+  * Tanzprogramm
+  * GEMA-Deckung (falls nicht EAASDC)
+  * veröffentlichung im Veranstaltungskalender
+  * Link zum Flyer
+  * Bemerkungen
+
+Für Changed Club Night:
+
+  * Veranstaltungsdatum
+  * Ursprüngliches Club Night Datum
+  * Name der Veranstaltung
+  * Leader
+  * Tanzplatz
+  * Tanzplatz PLZ + Ort
+  * Kontakt (Telefon)
+  * Tanzprogramm
+  * veröffentlichung im Veranstaltungskalender
+  * Link zum Flyer
+  * Bemerkungen
+
+Für Workshop:
+
+  * Veranstaltungsdatum
+  * WS-Art: für Tänzer, für Leader, Freizeitwochenende
+  * WS-Kategorie
+  * Name der Veranstaltung
+  * Leader
+  * Tanzplatz
+  * Tanzplatz PLZ + Ort
+  * Kontakt (Telefon)
+  * Tanzprogramm
+  * GEMA-Deckung (falls nicht EAASDC)
+  * veröffentlichung im Veranstaltungskalender
+  * Link zum Flyer
+  * Bemerkungen
+
+Für Class:
+
+  * Ansprechpartner
+  * Ansprechpartner im Kalender anzeigen
+  * Tanzplatz (Bezeichnung Straße)
+  * Tanzplatz (PLZ/Ort)
+  * Link zum Flyer
+  * Open House bis zu 4 Termine
+  * Tanzprogramm
+  * Zeitraum Beginn und Ende
+  * Wochentag
+  * Zeit von/bis
+  * Class während des Clubabends
+  * veröffentlichung im Class-Kalender
+  * Graduation Datum
+  * interne Bemerkung
+
+3.1.2 Benutzerdaten ändern
+
+Angezeigt werden (nicht änderbar):
+  * Name  des Clubs
+  * Mitgliedsnummer
+  * Name des Mitglieds
+  * Letzte Änderung
+
+Zur Bearbeitetung:
+
+  * Adresse
+  * PLZ
+  * Ort
+  * Land
+  * Telefon
+  * Fax
+  * Email-Adresse
+  * Webseite
+  * EAASDC-Newsletter gewünscht
+  * Email im HTML-Format
+
+3.2 Admin-Cockpit
+
+Im Admin-Cockpit können die Mitarbeiter von G&E sowie ERP ihre Aufgaben erledigen.
+
+3.2.1 Bestätigen von Eventanmeldungen
+
+...
+
+4. IT-Abteilung
+
+4.1 Arbeitsabläufe
+
+4.1.1 Neues Wiki erstellen
+
+4.1.2 Neue Benutzer hinzufügen
+
+4.3 Dokumentation Club-Cockpit-2016
+
+4.4 Dokumentation Club-Cockpit-2017
+
+Technologie WebApp:
+
+Das Club-Cockpit 2017 nutzt die WebApp-Technologie.
+Die allgemeine Funktionsweise ist hier dargestellt:
+[Image]
+
+Eine WebApp besteht aus einer Internetseite mit JavaScript und eine Server-Komponente.
+Die Internetseite kann z.B. wie in unserem Fall von einem CMS an den Browser geschickt werden (Schritt 1 und 2).
+Diese Seite enthält nur leere Formulare und hat noch keine Daten um diese zu füllen.
+Alle Daten, die wärend der interaktion mit dem Benutzer benötigt werden werden bei Bedarf von der Server-Komponente angefordert (Schritt 3 und 4).
+
+Wichtig ist hierbei die Separierung der Server-Komponente vom CMS (grüner und blauer Kasten). Dadurch ist die WebApplication nicht an das CMS gebunden und beide können unabhängig voneinander upgedated werden.
+Weitern wird innerhalb der Server-Komponente eine logische Trennung der Verarbeitungsschritte eingehalten. Ganz besonders gilt dies für die öffentliche Schnittstelle und den Datenzugriff. Wenn z.B. die Datenbank
+geändert wird muss *nur* die Komponente "Datenzugriff" angepasst werden. Alle anderen Teile können unverändert weiterarbeiten.
+
+Dialog:
+
+Die Benutzeroberfläche für die Clubvertreter basiert auf Assistenten. Die Eingaben werden thematisch gruppiert auf einzelnen Seiten abgefragt.
+Dabei gibt es viele Seiten, die in mehreren Wizard vorkommen. Um diese mehrfach verwenden zu können sind die Seiten einzeln implementiert und werden bei bedarf zu einem
+Wizard zusammengestellt.
+
+Klassen sind:
+  Wizard
+    addPage()
+    setFromDict()
+    toDict()
+
+  WizardPage
+    setFromDict()
+    toDict()
+    validate()
