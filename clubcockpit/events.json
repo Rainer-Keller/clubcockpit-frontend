@@ -1,5 +1,6 @@
 [
 {
+  "type": "event",
   "title": "Crazy Rail Dance",
   "location": "Berlin",
   "date": "2016-09-18",
@@ -8,6 +9,7 @@
   "disabled": false
 },
 {
+  "type": "event",
   "title": "Tanzabend",
   "location": "München",
   "date": "2016-10-18",
@@ -16,11 +18,30 @@
   "disabled": false
 },
 {
+  "type": "event",
   "title": "Mountain Mash",
   "location": "Hannover",
   "date": "2015-09-18",
   "time": "11:00",
   "description": "war toll",
   "disabled": true
+},
+{
+  "type": "class",
+  "title": "Einführung in Square Dance",
+  "location": "Hamburg",
+  "date": "2016-09-18",
+  "time": "11:00",
+  "description": "Lerne Square Dance",
+  "disabled": false
+},
+{
+  "type": "workshop",
+  "title": "Circulate Workshop",
+  "location": "Berlin",
+  "date": "2016-09-18",
+  "time": "11:00",
+  "description": "Cooles Event",
+  "disabled": false
 }
 ]

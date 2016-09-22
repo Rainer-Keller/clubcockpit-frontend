@@ -41,28 +41,13 @@
       <h1>Clubcockpit</h1>
       <div>
 
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#events" aria-controls="events" role="tab" data-toggle="tab"><i class="fa fa-bolt"></i> Events <span id="eventsBadge" class="badge"></span></a></li>
-          <li role="presentation"><a href="#classes" aria-controls="classes" role="tab" data-toggle="tab"><i class="fa fa-graduation-cap"></i> Classes <span id="classesBadge" class="badge"></span></a></li>
-          <li role="presentation"><a href="#workshops" aria-controls="workshops" role="tab" data-toggle="tab"><i class="fa fa-certificate"></i> Workshops <span id="workshopsBadge" class="badge"></span></a></li>
-        </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="events">
+        <h3>Gemeldete Veranstaltungen</h3>
+          <div class="tab-pane active" id="events">
              <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span> Daten werden geladen
           </div>
-          <div role="tabpanel" class="tab-pane" id="classes">
-             <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span> Daten werden geladen
-            </div>
-          <div role="tabpanel" class="tab-pane" id="workshops">
-             <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span> Daten werden geladen
-            </div>
-        </div>
-
       </div>
-    </div>
+      <button disabled type="button" id="buttonNew" class="btn btn-sm btn-primary" onclick="createNewEvent()"><i class="fa fa-plus" aria-hidden="true"></i> Neues Event anlegen</button>
 
     <div id="eventModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -125,17 +110,8 @@
       </div>
     </div>
 
-<!--
-              <i class="fa fa-plus" aria-hidden="true"></i>
-             <i class="fa fa-plus-square" aria-hidden="true"></i>
-             <i class="fa fa-floppy-o" aria-hidden="true"></i>
--->
-
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="jquery/jquery-3.1.0.min.js"></script>
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="bootstrap-3.3.7/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script src="bootstrap-3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <script src="jquery-ui/jquery-ui-1.12.0.min.js"></script>
       <script src="clubcockpit.js"></script>
   </body>
