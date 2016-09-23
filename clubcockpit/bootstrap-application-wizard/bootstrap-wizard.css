@@ -51,14 +51,14 @@
 	margin-bottom: 0;
 }
 
-.wizard-nav-link .glyphicon-chevron-right {
+.wizard-nav-link .fa-chevron-right {
 	float:right;
 	margin-top:12px;
 	margin-right:-6px;
 	opacity:.25;
 }
 
-li.wizard-nav-item.active .glyphicon-chevron-right {
+li.wizard-nav-item.active .fa-chevron-right {
 	opacity:1;
 }
 

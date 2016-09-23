@@ -93,7 +93,7 @@
             var a = $('<a class="wizard-nav-link"></a>');
             a.data("navindex", i);
             li.append(a);
-            a.append('<span class="glyphicon glyphicon-chevron-right"></span> ');
+            a.append('<span class="fa fa-chevron-right"></span> ');
             a.append(name);
             return li;
         },
