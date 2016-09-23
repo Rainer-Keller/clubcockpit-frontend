@@ -204,5 +204,6 @@ var events = new Events();
 $(document).ready(function(){
     events.load();
     $("#date").datepicker();
+    $("#datefoo").datepicker();
 });
 
