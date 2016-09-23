@@ -151,137 +151,135 @@
 			<div class="wizard-card" data-cardname="name">
 				<h3>Allgemeine Angaben</h3>
 
-				<div class="wizard-input-section">
-            <div class="form-group">
-              <div class="col-sm-8">
-                <label for="title">Titel</label>
-                <input type="text" class="form-control" id="title" placeholder="Titel" data-validate="validateEventTitle" data-serialize="1">
-              </div>
-            </div>
-				</div>
 
 				<div class="wizard-input-section">
-            <div class="form-group">
-              <div class="col-sm-8">
-                <label for="title">Datum</label>
-                <input type="date" class="form-control" id="datefoo" data-serialize="1">
-              </div>
+          <p>Allgemeine Angaben zur Veranstaltung</p>
+          <div class="form-group">
+            <div class="col-sm-8">
+              <label for="title">Name der Veranstaltung</label>
+              <input type="text" class="form-control" id="title" placeholder="Titel" data-validate="validateEventTitle" data-serialize="1">
             </div>
-				</div>
+          </div>
+        </div>
 
-			</div>
+        <div class="form-group">
+          <div class="col-sm-8">
+            <label for="title">Datum der Veranstaltung</label>
+            <input type="date" class="form-control" id="datefoo" placeholder="Datum" data-serialize="1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-8">
+            <label for="title">Leader</label>
+              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
+          </div>
+        </div>
+      </div>
 
 			<div class="wizard-card" data-cardname="group">
-				<h3>Server Group</h3>
+				<h3>GEMA</h3>
 
 				<div class="wizard-input-section">
 					<p>
-						Where would you like server <strong class="create-server-name"></strong>
-						to go?
+            Wie wird die Abrechnung mit der GEMA gemacht?
 					</p>
-
+          <div class="checkbox">
+              <label><input type="checkbox" value="">GEMA-Deckung anderweitig - nicht EAASDC</label>
+          </div>
 				</div>
 			</div>
 
-			<div class="wizard-card wizard-card-overlay" data-cardname="services">
-				<h3>Service Selection</h3>
-
-				<div class="alert hide">
-					It's recommended that you select at least one
-					service, like ping.
-				</div>
+			<div class="wizard-card" data-cardname="dancelevel">
+				<h3>Tanzprogramm</h3>
 
 				<div class="wizard-input-section">
 					<p>
-						Please choose the services you'd like Panopta to
-						monitor.  Any service you select will be given a default
-						check frequency of 1 minute.
+            Bitte wähle die Tanzprogramme aus, die auf der Veranstaltung getanzt werden.
 					</p>
 
-					<select name="services" data-placeholder="Service List" style="width:350px;" class="chzn-select create-server-service-list form-control" multiple>
-
+					<select name="levels" data-placeholder="Tanzprogramme" style="width:350px;" class="chzn-select create-server-service-list form-control" multiple>
 						<option value=""></option>
-						<optgroup label="Basic">
-							<option selected value="icmp.ping">Ping</option>
-							<option selected value="tcp.ssh">SSH</option>
-							<option value="tcp.ftp">FTP</option>
+						<optgroup label="Square Dance">
+							<option value="sq.ms">B</option>
+							<option value="sq.ms">MS</option>
+							<option value="sq.pl">PL</option>
+							<option value="sq.a1">A1</option>
+							<option value="sq.a2">A2</option>
+							<option value="sq.c1">C1</option>
+							<option value="sq.c2">C2</option>
+							<option value="sq.c3a">C3a</option>
+							<option value="sq.c3b">C3b</option>
+							<option value="sq.c4">C4</option>
 						</optgroup>
-						<optgroup label="Web">
-							<option selected value="tcp.http">HTTP</option>
-							<option value="tcp.https">HTTP (Secure)</option>
-							<option value="tcp.dns">DNS</option>
+						<optgroup label="Round Dance">
+              <option value="rd">Phase I</option>
+              <option value="rd">Phase II</option>
+              <option value="rd">Phase III</option>
+              <option value="rd">Phase IV</option>
+              <option value="rd">Phase V</option>
+              <option value="rd">Phase VI</option>
+              <option value="rd">Phase VII</option>
 						</optgroup>
-						<optgroup label="Email">
-							<option value="tcp.pop">POP</option>
-							<option value="tcp.imap">IMAP</option>
-							<option value="tcp.smtp">SMTP</option>
-							<option value="tcp.pops">POP (Secure)</option>
-							<option value="tcp.imaps">IMAP (Secure)</option>
-							<option value="tcp.smtps">SMTP (Secure)</option>
-							<option value="tcp.http.exchange">Microsoft Exchange</option>
-						</optgroup>
-						<optgroup label="Databases">
-							<option value="tcp.mysql">MySQL</option>
-							<option value="tcp.postgres">PostgreSQL</option>
-							<option value="tcp.mssql">Microsoft SQL Server</option>
+						<optgroup label="Andere">
+              <option value="ct">Contra</option>
+              <option value="tr">Traditional</option>
+              <option value="cl">Clogging</option>
+              <option value="ld">Line Dance</option>
 						</optgroup>
 					</select>
 				</div>
 			</div>
 
-			<div class="wizard-card wizard-card-overlay" data-cardname="location">
-				<h3>Monitoring Location</h3>
+			<div class="wizard-card" data-cardname="class">
+				<h3>Angaben für Classes</h3>
 
 				<div class="wizard-input-section">
 					<p>
-						We determined <strong>Chicago</strong> to be
-						the closest location to monitor
-						<strong class="create-server-name"></strong>
-						If you would like to change this, or you think this is
-						incorrect, please select a different
-						monitoring location.
 					</p>
 
-					<select name="location" data-placeholder="Monitor nodes" style="width:350px;" class="chzn-select form-control">
-						<option value=""></option>
-						<optgroup label="North America">
-							<option>Atlanta</option>
-							<option selected>Chicago</option>
-							<option>Dallas</option>
-							<option>Denver</option>
-							<option>Fremont, CA</option>
-							<option>Los Angeles</option>
-							<option>Miami</option>
-							<option>Newark, NJ</option>
-							<option>Phoenix</option>
-							<option>Seattle</option>
-							<option>Washington, DC</option>
-						</optgroup>
-
-						<optgroup label="Europe">
-							<option>Amsterdam, NL</option>
-							<option>Berlin</option>
-							<option>London</option>
-							<option>Milan, Italy</option>
-							<option>Nurnberg, Germany</option>
-							<option>Paris</option>
-							<option>Stockholm</option>
-							<option>Vienna</option>
-						</optgroup>
-
-						<optgroup label="Asia/Africa">
-							<option>Cairo</option>
-							<option>Jakarta</option>
-							<option>Johannesburg</option>
-							<option>Hong Kong</option>
-							<option>Singapore</option>
-							<option>Sydney</option>
-							<option>Tokyo</option>
-						</optgroup>
-
-					</select>
-
-				</div>
+        <div class="form-group">
+          <div class="col-sm-8">
+            <label for="title">Open House</label>
+              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-8">
+            <label for="title">Zeitraum</label>
+              <input type="date" id="date">
+              <input type="date" id="date">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-8">
+            <label for="title">Wochentag</label>
+              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-8">
+            <label for="title">Zeit</label>
+              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
+              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+              <label><input type="checkbox" value="">Class während des Clubabends</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+              <label><input type="checkbox" value="">Veröffentlichumg im Kalender</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-8">
+            <label for="title">Graduation</label>
+              <input type="date" id="date">
+          </div>
+        </div>
 			</div>
 
 			<div class="wizard-card wizard-card-overlay">
@@ -398,7 +396,15 @@
 					keyboard : false,
 					contentHeight : 400,
 					contentWidth : 700,
-					backdrop: 'static'
+					backdrop: 'static',
+          progressBarCurrent: false,
+          buttons: {
+            cancelText: "Abbrechen",
+            nextText: "Weiter",
+            backText: "Zurück",
+            submitText: "Absenden",
+            submittingText: "Übertrage Daten...",
+          },
 				});
 
 				$(".chzn-select").select2();
