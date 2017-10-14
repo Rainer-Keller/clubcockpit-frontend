@@ -125,7 +125,7 @@
             // Issue #38 Hiding navigation link when hide card
             // Awaiting approval
             //
-            // this.nav.removeClass('hide');
+            this.nav.removeClass('hide');
             
             this._disabled = false;
             this.trigger("enabled");
@@ -141,7 +141,7 @@
                 // Issue #38 Hiding navigation link when hide card
                 // Awaiting approval
                 //
-                // this.nav.addClass('hide');
+                this.nav.addClass('hide');
             }
             this.trigger("disabled");
             return this;
