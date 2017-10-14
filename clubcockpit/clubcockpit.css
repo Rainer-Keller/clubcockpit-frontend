@@ -1,0 +1,23 @@
+.modal-header, h4, .close {
+  background-color: #5cb85c;
+  color:white;
+  text-align: center;
+  font-size: 30px;
+}
+
+.modal-footer {
+  background-color: #e9e9e9;
+}
+
+#eventModal .highlightInvalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+.wizard-modal p {
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.wizard-modal .chzn-container .chzn-results {
+  max-height: 150px;
+}

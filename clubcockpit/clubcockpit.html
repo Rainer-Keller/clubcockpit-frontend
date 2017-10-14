@@ -13,42 +13,106 @@
     <link rel="stylesheet" href="fontawesome-4.6.3/font-awesome.min.css">
     <link rel="stylesheet" href="jquery-ui/jquery-ui-1.12.0.min.css">
     <link rel="stylesheet" href="bootstrap-application-wizard/bootstrap-wizard.css">
+    <link rel="stylesheet" href="clubcockpit.css">
     <link rel="stylesheet" href="select2-4.0.3/select2.min.css" rel="stylesheet" />
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <style>
-    .modal-header, h4, .close {
-      background-color: #5cb85c;
-      color:white !important;
-      text-align: center;
-      font-size: 30px;
-    }
-    .modal-footer {
-      background-color: #e9e9e9;
-    }
-    #eventModal .highlightInvalid {
-      box-shadow: 0 0 5px 1px red;
-    }
-    </style>
   </head>
-  <body>
 
+  <body>
     <div class="container">
       <h1>Clubcockpit</h1>
       <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#events" aria-controls="events" role="tab" data-toggle="tab"><i class="fa fa-bolt"></i> Veranstaltungen <span id="eventsBadge" class="badge"></span></a></li>
+          <li role="presentation"><a href="#abstimmungen" aria-controls="abstimmungen" role="tab" data-toggle="tab"><i class="fa fa-graduation-cap"></i> Abstimmungen <span id="classesBadge" class="badge"></span></a></li>
+          <li role="presentation"><a href="#userdetail" aria-controls="userdetail" role="tab" data-toggle="tab"><i class="fa fa-certificate"></i> Eigene Daten <span id="workshopsBadge" class="badge"></span></a></li>
+          <li role="presentation"><a href="#clubdetail" aria-controls="clubdetail" role="tab" data-toggle="tab"><i class="fa fa-certificate"></i> Clubdaten <span id="workshopsBadge" class="badge"></span></a></li>
+        </ul>
 
+        <!-- Tab panes -->
+        <div class="tab-content">
 
-        <h3>Gemeldete Veranstaltungen</h3>
           <div class="tab-pane active" id="events">
-             <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span> Daten werden geladen
+            <h3>Gemeldete Veranstaltungen</h3>
+            <button disabled type="button" id="buttonNew" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Neue Veranstaltung</button>
+            <div id="eventcontent">
+              <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span> Daten werden geladen
+            </div>
           </div>
+          <div role="tabpanel" class="tab-pane" id="abstimmungen">
+            <!--   <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span> Daten werden geladen -->
+            <div class="panel panel-info">
+              <div class="panel-heading" data-toggle="collapse" href="#collapse0" aria-expanded="true">
+                Abstimmung 1: Thema der Abstimmung hier (zum Aufklappen)
+              </div>
+              <div id="collapse0" class="panel-collapse collapse" aria-expanded="true">
+                Ausführlichen Text hier einfügen<br>
+                <button type="button" id="buttonNew" class="btn btn-sm btn-primary">Jetzt Abstimmen</button>
+              </div>
+            </div>
+            <div class="panel panel-info">
+              <div class="panel-heading" data-toggle="collapse" href="#collapse1" aria-expanded="true">
+                Abstimmung 2: Thema der Abstimmung hier
+              </div>
+              <div id="collapse1" class="panel-collapse collapse" aria-expanded="true">
+                Ausführlichen Text hier einfügen<br>
+                <button type="button" id="buttonNew" class="btn btn-sm btn-primary">Jetzt Abstimmen</button>
+              </div>
+            </div>
+            <div class="panel panel-info">
+              <div class="panel-heading" data-toggle="collapse" href="#collapse2" aria-expanded="true">
+                Abstimmung 3: Thema der Abstimmung hier
+              </div>
+              <div id="collapse2" class="panel-collapse collapse" aria-expanded="true">
+                Ausführlichen Text hier einfügen<br>
+                <button type="button" id="buttonNew" class="btn btn-sm btn-primary">Jetzt Abstimmen</button>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="userdetail">
+            <!--  <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span> Daten werden geladen -->
+            <div class="form-group">
+              <label for="nameInputEmail1">Name</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" value="Beispiel" readonly>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="mail@example.com" readonly>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" value="xxxxxx" readonly>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" checked readonly>
+                Newsletter
+              </label>
+            </div>
+            <button class="btn btn-primary">Ändern</button>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="clubdetail">
+            <!--  <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span> Daten werden geladen -->
+            <div class="form-group">
+              <label for="nameInputEmail1">Clubname</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" value="Beispiel" readonly>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Kontonummer</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="DEXXXXXXXXX" readonly>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Ansprechpartner</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" value="xxxxxx" readonly>
+            </div>
+            <button class="btn btn-primary">Ändern</button>
+          </div>
+        </div>
       </div>
-      <button disabled type="button" id="buttonNew" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Neues Event anlegen</button>
+
+    </div>
+    </div>
 
     <div id="eventModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -112,446 +176,371 @@
     </div>
 
 
-    <!-- demo -->
-		<style type="text/css">
-			.wizard-modal p {
-				margin: 0 0 10px;
-				padding: 0;
-			}
+    <!-- New Event Wizard -->
 
-			#wizard-ns-detail-servers, .wizard-additional-servers {
-				font-size: 12px;
-				margin-top: 10px;
-				margin-left: 15px;
-			}
-			#wizard-ns-detail-servers > li, .wizard-additional-servers li {
-				line-height: 20px;
-				list-style-type: none;
-			}
-			#wizard-ns-detail-servers > li > img {
-				padding-right: 5px;
-			}
+    <div class="wizard" id="eventWizard" data-title="Neues Event erstellen">
 
-			.wizard-modal .chzn-container .chzn-results {
-				max-height: 150px;
-			}
-			.wizard-addl-subsection {
-				margin-bottom: 40px;
-			}
-			.create-server-agent-key {
-				margin-left: 15px; 
-				width: 90%;
-			}
-		</style>
+      <!-- Step 1 Event type -->
+      <div class="wizard-card" data-cardname="EventType">
+        <h3>Event-Typ</h3>
+        <div class="wizard-input-section">
+          <p>Auswahl des Event-Typs</p>
+          <div class="form-group">
+            <label for="eventType">Event-Typ</label>
+            <select class="form-control" id="eventType" data-serialize="1">
+              <option disabled selected value style="display:none">Bitte auswählen</option>
+              <option value="S">Special</option>
+              <option value="SCN">Special Club Night</option>
+              <option value="CCN">Besonderer/Verschobener Clubabend</option>
+              <option value="WS">Workshop</option>
+              <option value="C">Class</option>
+            </select>
+          </div>
+        </div>
 
+        <!-- Step 2 General information -->
+        <div class="wizard-card" data-cardname="General">
+          <h3>Allgemeine Angaben</h3>
+          <div class="wizard-input-section">
+            <p>Allgemeine Angaben zur Veranstaltung</p>
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="title">Name der Veranstaltung</label>
+                <input type="text" class="form-control" id="title" placeholder="Titel" data-validate="validateEventTitle" data-serialize="1">
+              </div>
+            </div>
+          </div>
 
-		<div class="wizard" id="eventWizard" data-title="Neues Event erstellen">
-
-			<!-- Step 1 Name & FQDN -->
-			<div class="wizard-card" data-cardname="name">
-				<h3>Allgemeine Angaben</h3>
-
-
-				<div class="wizard-input-section">
-          <p>Allgemeine Angaben zur Veranstaltung</p>
           <div class="form-group">
             <div class="col-sm-8">
-              <label for="title">Name der Veranstaltung</label>
-              <input type="text" class="form-control" id="title" placeholder="Titel" data-validate="validateEventTitle" data-serialize="1">
+              <label for="title">Tanzplatz</label>
+              <input type="text" class="form-control" id="dancelocationName" placeholder="Name des Tanzplatzes" data-serialize="1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-8">
+              <label for="title">Postleitzahl</label>
+              <input type="text" class="form-control" id="dancelocationPostcode" data-serialize="1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-8">
+              <label for="title">Ort</label>
+              <input type="text" class="form-control" id="dancelocationCity" data-serialize="1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-8">
+              <label for="title">Adresse</label>
+              <input type="text" class="form-control" placeholder="Straße und Hausnummer" id="dancelocationAddress" data-serialize="1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-8">
+              <label for="dancelocationCountry">Land</label>
+              <select class="form-control" id="dancelocationCountry" data-serialize="1">
+                <option disabled selected value style="display:none">Bitte auswählen</option>
+                <option>AT</option>
+                <option>BE</option>
+                <option>CH</option>
+                <option>DE</option>
+                <option>FR</option>
+                <option>LI</option>
+                <option>NL</option>
+                <option>RU</option>
+                <option>SK</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 Dates -->
+        <div class="wizard-card" data-cardname="date">
+          <h3>Datum</h3>
+          <div class="wizard-input-section">
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="title">Datum der Veranstaltung</label>
+                <input type="date" readonly class="form-control" id="datefoo" placeholder="Datum" data-serialize="1">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 Dance program -->
+        <div class="wizard-card" data-cardname="danceprogram">
+          <h3>Tanzprogramm</h3>
+
+          <div class="wizard-input-section">
+            <div class="form-group" id="leader">
+              <div class="col-sm-8">
+                <label for="leader">Leader</label>
+                <div> <!-- data-validate="validateLeader">  this <div> is needed because popover does not work with select2 -->
+                  <select id="leaderselection" name="leader" data-placeholder="Leader" style="width:350px;" class="chzn-select form-control" multiple>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <p>
+            Bitte wähle die Tanzprogramme aus, die auf der Veranstaltung getanzt werden.
+            </p>
+
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="levels">Tanzprogramm</label>
+                <div> <!-- data-validate="validateDancelevel">  this <div> is needed because popover does not work with select2 -->
+                  <select name="levels" data-placeholder="Tanzprogramme" style="width:350px;" class="chzn-select create-server-service-list form-control" multiple>
+                    <option value=""></option>
+                    <optgroup label="Square Dance">
+                      <option value="sq.ms">B</option>
+                      <option value="sq.ms">MS</option>
+                      <option value="sq.pl">PL</option>
+                      <option value="sq.a1">A1</option>
+                      <option value="sq.a2">A2</option>
+                      <option value="sq.c1">C1</option>
+                      <option value="sq.c2">C2</option>
+                      <option value="sq.c3a">C3a</option>
+                      <option value="sq.c3b">C3b</option>
+                      <option value="sq.c4">C4</option>
+                    </optgroup>
+                    <optgroup label="Round Dance">
+                      <option value="rd">Phase I</option>
+                      <option value="rd">Phase II</option>
+                      <option value="rd">Phase III</option>
+                      <option value="rd">Phase IV</option>
+                      <option value="rd">Phase V</option>
+                      <option value="rd">Phase VI</option>
+                      <option value="rd">Phase VII</option>
+                    </optgroup>
+                    <optgroup label="Andere">
+                      <option value="ct">Contra</option>
+                      <option value="tr">Traditional</option>
+                      <option value="cl">Clogging</option>
+                      <option value="ld">Line Dance</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- Step 5 General information -->
+        <div class="wizard-card" data-cardname="Gema">
+          <h3>GEMA</h3>
+
+          <div class="wizard-input-section">
+            <p>
+            Wie wird die Abrechnung mit der GEMA gemacht?
+            </p>
+            <div class="checkbox">
+              <label><input type="checkbox" value="">GEMA-Deckung anderweitig - nicht EAASDC</label>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="wizard-card" data-cardname="Classes">
+          <h3>Angaben für Classes</h3>
+
+          <div class="wizard-input-section">
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="dancelocationCountry">Class-Typ</label>
+                <select class="form-control" id="dancelocationCountry" data-serialize="1">
+                  <option disabled selected value style="display:none">Bitte auswählen</option>
+                  <option>Beginner</option>
+                  <option>Fortgeschrittene</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="title">Datum der Open-Houses</label>
+                <input type="date" readonly class="form-control" id="datefoo" placeholder="Datum" data-serialize="1">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="dancelocationCountry">Wochentag</label>
+                <select class="form-control" id="dancelocationCountry" data-serialize="1">
+                  <option disabled selected value style="display:none">Bitte auswählen</option>
+                  <option>wechselnde Tage</option>
+                  <option>Montag</option>
+                  <option>Dienstag</option>
+                  <option>Mittwoch</option>
+                  <option>Donnerstag</option>
+                  <option>Freitag</option>
+                  <option>Samstag</option>
+                  <option>Sonntag</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="title">Zeit</label>
+                <input type="text" class="form-control" id="title" placeholder="00:00" data-serialize="1">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-8">
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Class während des Clubabends</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-8">
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Class endet mit Graduation</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="title">Anzahl der Students</label>
+                <input type="text" class="form-control" id="title" data-serialize="1">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-card" data-cardname="CCN">
+          <h3>CCN</h3>
+
+          <div class="wizard-input-section">
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="title">Datum des verschobenen Clubabends</label>
+                <input type="date" readonly class="form-control" id="datefoo" placeholder="Datum" data-serialize="1">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="wizard-card" data-cardname="Workshop">
+          <h3>Angaben für Workshops</h3>
+
+          <div class="wizard-input-section">
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="dancelocationCountry">Workshop-Typ</label>
+                <select class="form-control" id="dancelocationCountry" data-serialize="1">
+                  <option disabled selected value style="display:none">Bitte auswählen</option>
+                  <option>Mini</option>
+                  <option>Midi</option>
+                  <option>Maxi</option>
+                  <option>Super</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="dancelocationCountry">Art des Workshops</label>
+                <select class="form-control" id="dancelocationCountry" data-serialize="1">
+                  <option disabled selected value style="display:none">Bitte auswählen</option>
+                  <option>Tänzer</option>
+                  <option>Leader</option>
+                  <option>Freizeitwochenende</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-8">
+                <label for="title">Anzahl der Teilnehmer</label>
+                <input type="text" class="form-control" id="title" data-serialize="1">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-8">
+              <label for="title">Einnahmen</label>
+              <input type="text" class="form-control" id="title" data-serialize="1">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Step 2 General information -->
+      <div class="wizard-card" data-cardname="Contact">
+        <h3>Kontaktdaten</h3>
+        <div class="wizard-input-section">
+          <div class="form-group">
+            <div class="col-sm-8">
+              <label for="title">Ansprechpartner</label>
+              <input type="text" class="form-control" id="title" placeholder="Name" data-serialize="1">
             </div>
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-sm-8">
-            <label for="title">Datum der Veranstaltung</label>
-            <input type="date" class="form-control" id="datefoo" placeholder="Datum" data-serialize="1">
+            <label for="title">Email</label>
+            <input type="text" class="form-control" id="dancelocationName" placeholder="Email-Adresse" data-serialize="1">
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-sm-8">
-            <label for="title">Leader</label>
-              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
+            <label for="title">Telefon</label>
+            <input type="text" class="form-control" id="dancelocationPostcode" data-serialize="1">
           </div>
         </div>
       </div>
 
-			<div class="wizard-card" data-cardname="group">
-				<h3>GEMA</h3>
-
-				<div class="wizard-input-section">
-					<p>
-            Wie wird die Abrechnung mit der GEMA gemacht?
-					</p>
-          <div class="checkbox">
-              <label><input type="checkbox" value="">GEMA-Deckung anderweitig - nicht EAASDC</label>
+      <!-- Step 2 General information -->
+      <div class="wizard-card" data-cardname="Public">
+        <h3>Verföffentlichungen</h3>
+        <div class="wizard-input-section">
+          <div class="form-group">
+            <div class="col-sm-8">
+              <label for="title">Flyer oder Webseite</label>
+              <input type="text" class="form-control" id="title" placeholder="http://" data-serialize="1">
+            </div>
           </div>
-				</div>
-			</div>
-
-			<div class="wizard-card" data-cardname="dancelevel">
-				<h3>Tanzprogramm</h3>
-
-				<div class="wizard-input-section">
-					<p>
-            Bitte wähle die Tanzprogramme aus, die auf der Veranstaltung getanzt werden.
-					</p>
-
-					<select name="levels" data-placeholder="Tanzprogramme" style="width:350px;" class="chzn-select create-server-service-list form-control" multiple>
-						<option value=""></option>
-						<optgroup label="Square Dance">
-							<option value="sq.ms">B</option>
-							<option value="sq.ms">MS</option>
-							<option value="sq.pl">PL</option>
-							<option value="sq.a1">A1</option>
-							<option value="sq.a2">A2</option>
-							<option value="sq.c1">C1</option>
-							<option value="sq.c2">C2</option>
-							<option value="sq.c3a">C3a</option>
-							<option value="sq.c3b">C3b</option>
-							<option value="sq.c4">C4</option>
-						</optgroup>
-						<optgroup label="Round Dance">
-              <option value="rd">Phase I</option>
-              <option value="rd">Phase II</option>
-              <option value="rd">Phase III</option>
-              <option value="rd">Phase IV</option>
-              <option value="rd">Phase V</option>
-              <option value="rd">Phase VI</option>
-              <option value="rd">Phase VII</option>
-						</optgroup>
-						<optgroup label="Andere">
-              <option value="ct">Contra</option>
-              <option value="tr">Traditional</option>
-              <option value="cl">Clogging</option>
-              <option value="ld">Line Dance</option>
-						</optgroup>
-					</select>
-				</div>
-			</div>
-
-			<div class="wizard-card" data-cardname="class">
-				<h3>Angaben für Classes</h3>
-
-				<div class="wizard-input-section">
-					<p>
-					</p>
+        </div>
 
         <div class="form-group">
           <div class="col-sm-8">
-            <label for="title">Open House</label>
-              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
+            <div class="checkbox">
+              <label><input type="checkbox" value="">Veröffentlichung im Kalender</label>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <div class="col-sm-8">
-            <label for="title">Zeitraum</label>
-              <input type="date" id="date">
-              <input type="date" id="date">
-          </div>
+
+      </div>
+
+
+      <div class="wizard-card" data-cardname="Class">
+        <h3>Zusammenfassung</h3>
+        <div class="wizard-input-section">
+          <p>Zusammenfassung
+          </p>
         </div>
-        <div class="form-group">
-          <div class="col-sm-8">
-            <label for="title">Wochentag</label>
-              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-8">
-            <label for="title">Zeit</label>
-              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
-              <input type="text" class="form-control" id="title" placeholder="Leader" data-serialize="1">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="checkbox">
-              <label><input type="checkbox" value="">Class während des Clubabends</label>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="checkbox">
-              <label><input type="checkbox" value="">Veröffentlichumg im Kalender</label>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-8">
-            <label for="title">Graduation</label>
-              <input type="date" id="date">
-          </div>
-        </div>
-			</div>
-
-			<div class="wizard-card wizard-card-overlay">
-				<h3>Notification Schedule</h3>
-
-				<div class="wizard-input-section">
-					<p>
-						Select the notification schedule to be used for outages.
-					</p>
-
-					<select name="notification" class="wizard-ns-select chzn-select form-control" data-placeholder="Notification schedule" style="width:350px;">
-						<option value=""></option>
-						<option>ALIS Production</option>
-						<option>ALIS Development &amp; Staging</option>
-						<option>Panopta Development &amp; Staging</option>
-						<option>Jira</option>
-						<option>QSC Enterprise Production</option>
-						<option>QSC Enterprise Development &amp; Staging</option>
-						<option>Panopta Production</option>
-						<option>Panopta Monitoring Nodes</option>
-						<option>Common</option>
-					</select>
-				</div>
-
-				<div class="wizard-ns-detail hide">
-					Also using <strong>ALIS Production</strong>:
-
-					<ul id="wizard-ns-detail-servers">
-						<li>Corporate sites</li>
-						<li>dt01.sat.medtelligent.com</li>
-						<li>alisonline.com</li>
-						<li>circa-db04.sat.medtelligent.com</li>
-						<li>circa-services01.sat.medtelligent.com</li>
-						<li>circa-web01.sat.medtelligent.com</li>
-						<li>heartbeat.alisonline.com</li>
-						<li>medtelligent.com</li>
-						<li>dt02.fre.medtelligent.com</li>
-						<li>dev03.lin.medtelligent.com</li>
-					</ul>img				</div>
-			</div>
-			
-			<div class="wizard-card">
-				<h3>Agent Setup</h3>
-
-				<div class="wizard-input-section">
-					<p>The <a target="_blank" href="http://www.panopta.com/support/knowledgebase/support-questions/how-do-i-install-the-panopta-monitoring-agent/">Panopta Agent</a> allows
-						you to monitor local resources (disk usage, cpu usage, etc).
-						If you would like to set that up now, please download
-						and follow the <a target="_blank" href="http://www.panopta.com/support/knowledgebase/support-questions/how-do-i-install-the-panopta-monitoring-agent/">install instructions.</a>
-					</p>
-
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Download<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">.rpm</a></li>
-							<li><a href="#">.deb</a></li>
-							<li><a href="#">.tar.gz</a></li>
-						</ul>
-					</div>
-				</div>
-
-
-				<div class="wizard-input-section">
-					<p>You will be given a server key after you install the Agent
-						on <strong class="create-server-name"></strong>.
-						If you know your server key now, please enter it
-						below.</p>
-
-					<div class="form-group">
-						<input type="text" class="create-server-agent-key form-control" placeholder="Server key (optional)" data-validate="">
-					</div>
-				</div>
-
-
-				<div class="wizard-error">
-					<div class="alert alert-error">
-						<strong>There was a problem</strong> with your submission.
-						Please correct the errors and re-submit.
-					</div>
-				</div>
-	
-				<div class="wizard-failure">
-					<div class="alert alert-error">
-						<strong>There was a problem</strong> submitting the form.
-						Please try again in a minute.
-					</div>
-				</div>
-	
-				<div class="wizard-success">
-					<div class="alert alert-success">
-						<span class="create-server-name"></span>Server Created <strong>Successfully.</strong>
-					</div>
-	
-					<a class="btn btn-default create-another-server">Create another server</a>
-					<span style="padding:0 10px">or</span>
-					<a class="btn btn-success im-done">Done</a>
-				</div>
-			</div>
-		</div>
+      </div>
+    </div>
 
     <!-- ende demo -->
 
-      <script src="jquery/jquery-3.1.0.min.js"></script>
-      <script src="bootstrap-3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <script src="select2-4.0.3/select2.min.js"></script>
-      <script src="bootstrap-application-wizard/bootstrap-wizard.js"></script>
-      <script src="jquery-ui/jquery-ui-1.12.0.min.js"></script>
-      <script src="clubcockpit.js"></script>
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$.fn.wizard.logging = true;
-				var wizard = $('#eventWizard').wizard({
-					keyboard : false,
-					contentHeight : 400,
-					contentWidth : 700,
-					backdrop: 'static',
-          progressBarCurrent: false,
-          buttons: {
-            cancelText: "Abbrechen",
-            nextText: "Weiter",
-            backText: "Zurück",
-            submitText: "Absenden",
-            submittingText: "Übertrage Daten...",
-          },
-				});
-
-				$(".chzn-select").select2();
-
-				$('#fqdn').on('input', function() {
-					if ($(this).val().length != 0) {
-						$('#ip').val('').attr('disabled', 'disabled');
-						$('#fqdn, #ip').parents('.form-group').removeClass('has-error has-success');
-					} else {
-						$('#ip').val('').removeAttr('disabled');
-					}
-				});
-
-				var pattern = /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
-				x = 46;
-
-				$('#ip').on('input', function() {
-					if ($(this).val().length != 0) {
-						$('#fqdn').val('').attr('disabled', 'disabled');
-					} else {
-						$('#fqdn').val('').removeAttr('disabled');
-					}
-				}).keypress(function(e) {
-					if (e.which != 8 && e.which != 0 && e.which != x && (e.which < 48 || e.which > 57)) {
-						console.log(e.which);
-						return false;
-					}
-				}).keyup(function() {
-					var $this = $(this);
-					if (!pattern.test($this.val())) {
-						//$('#validate_ip').text('Not Valid IP');
-						console.log('Not Valid IP');
-						$this.parents('.form-group').removeClass('has-error has-success').addClass('has-error');
-						while ($this.val().indexOf("..") !== -1) {
-							$this.val($this.val().replace('..', '.'));
-						}
-						x = 46;
-					} else {
-						x = 0;
-						var lastChar = $this.val().substr($this.val().length - 1);
-						if (lastChar == '.') {
-							$this.val($this.val().slice(0, -1));
-						}
-						var ip = $this.val().split('.');
-						if (ip.length == 4) {
-							//$('#validate_ip').text('Valid IP');
-							console.log('Valid IP');
-							$this.parents('.form-group').removeClass('has-error').addClass('has-success');
-						}
-					}
-				});
-
-				wizard.on('closed', function() {
-					wizard.reset();
-				});
-
-				wizard.on("reset", function() {
-					wizard.modal.find(':input').val('').removeAttr('disabled');
-					wizard.modal.find('.form-group').removeClass('has-error').removeClass('has-succes');
-					wizard.modal.find('#fqdn').data('is-valid', 0).data('lookup', 0);
-				});
-
-				wizard.on("submit", function(wizard) {
-					var submit = {
-						"hostname": $("#new-server-fqdn").val()
-					};
-					
-					this.log('seralize()');
-					this.log(this.serialize());
-					this.log('serializeArray()');
-					this.log(this.serializeArray());
-			
-					setTimeout(function() {
-						wizard.trigger("success");
-						wizard.hideButtons();
-						wizard._submitting = false;
-						wizard.showSubmitCard("success");
-						wizard.updateProgressBar(0);
-					}, 2000);
-				});
-				
-				wizard.el.find(".wizard-success .im-done").click(function() {
-					wizard.hide();
-					setTimeout(function() {
-						wizard.reset();	
-					}, 250);
-					
-				});
-			
-				wizard.el.find(".wizard-success .create-another-server").click(function() {
-					wizard.reset();
-				});
-			
-				$(".wizard-group-list").click(function() {
-					alert("Disabled for demo.");
-				});
-
-				$('#buttonNew').click(function(e) {
-					e.preventDefault();
-					wizard.show();
-				});
-			});
-
-			function validateEventTitle(el) {
-				var name = el.val();
-				var retValue = {};
-
-				if (name == "") {
-					retValue.status = false;
-					retValue.msg = "Bitte einen Namen für das Event eingeben";
-				} else {
-					retValue.status = true;
-				}
-
-				return retValue;
-			};
-
-			function validateFQDN(el) {
-				var $this = $(el);
-				var retValue = {};
-
-				if ($this.is(':disabled')) {
-					// FQDN Disabled
-					retValue.status = true;
-				} else {
-					if ($this.data('lookup') === 0) {
-						retValue.status = false;
-						retValue.msg = "Preform lookup first";
-					} else {
-						if ($this.data('is-valid') === 0) {
-							retValue.status = false;
-							retValue.msg = "Lookup Failed";
-						} else {
-							retValue.status = true;
-						}
-					}
-				}
-
-				return retValue;
-			};
-
-			function lookup() {
-				// Normally a ajax call to the server to preform a lookup
-				$('#fqdn').data('lookup', 1);
-				$('#fqdn').data('is-valid', 1);
-				$('#ip').val('127.0.0.1');
-			};
-		</script>
+    <script src="jquery/jquery-3.1.0.min.js"></script>
+    <script src="bootstrap-3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="select2-4.0.3/select2.min.js"></script>
+    <script src="bootstrap-application-wizard/bootstrap-wizard.js"></script>
+    <script src="jquery-ui/jquery-ui-1.12.0.min.js"></script>
+    <script src="clubcockpit.js"></script>
   </body>
 </html>
