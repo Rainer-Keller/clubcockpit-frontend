@@ -732,7 +732,7 @@
                     ret = handler.apply(this, args);
                 }
                 catch (e) {
-                    this.log("event handler " + name + " had an exception");
+                    this.log("event handler " + name + " had an exception:" + e);
                 }
             }
             else {
