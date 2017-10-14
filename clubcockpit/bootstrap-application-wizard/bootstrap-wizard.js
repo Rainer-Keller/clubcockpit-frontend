@@ -127,7 +127,6 @@
             //
             // this.nav.removeClass('hide');
             
-            this.nav.addClass("active");
             this._disabled = false;
             this.trigger("enabled");
             return this;
