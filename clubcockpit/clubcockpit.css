@@ -21,3 +21,9 @@
 .wizard-modal .chzn-container .chzn-results {
   max-height: 150px;
 }
+
+#eventDateList > div > hr {
+  margin-top : 3px;
+  margin-bottom : 3px;
+  border: 1px solid lightgray;
+}

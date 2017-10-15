@@ -260,15 +260,25 @@
 
         <!-- Step 3 Dates -->
         <div class="wizard-card" data-cardname="date">
-          <h3>Datum</h3>
+          <h3>Veranstaltungsdatum</h3>
           <div class="wizard-input-section">
             <div class="form-group">
-              <div class="col-sm-8">
-                <label for="title">Datum der Veranstaltung</label>
-                <input type="date" readonly class="form-control" id="datefoo" placeholder="Datum" data-serialize="1">
+              <div id="eventDateList">
               </div>
+              <button id="eventAddDateButton" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> weiteres Datum</button>
             </div>
           </div>
+
+          <!-- vvv Template for date item vvv -->
+          <div id="eventDateItemTemplate" class="hidden">
+            <input type="date" readonly placeholder="Auswählen"><div id="secondDate" style="display:inline"> - <input type="date" readonly placeholder="Auswählen"></div>
+            <button type="button" class="btn btn-primary"><span class="fa fa-trash"></span></button>
+            <div class="checkbox">
+              <label><input type="checkbox" value="">mehrere Tage</label>
+            </div>
+            <hr/>
+          </div>
+          <!-- ^^^ Template for date item ^^^ -->
         </div>
 
         <!-- Step 4 Dance program -->

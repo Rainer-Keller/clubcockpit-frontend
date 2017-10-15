@@ -331,6 +331,8 @@ $(document).ready(function() {
   disableOptionalCards();
   wizard.show();
 
+  $("#eventAddDateButton").on("click", eventDateAddDateItem);
+
   });
 });
 
@@ -373,4 +375,42 @@ function currentEventType()
 {
     var e = document.getElementById("eventType");
     return e.value;
+}
+
+function eventDateRemoveDateItem(index)
+{
+    var count = document.getElementById("eventDateList").childElementCount;
+    if (count === 1)
+        return;
+
+    $("#eventDateItem" + index).remove();
+
+    if (count <= 7)
+        document.getElementById("eventAddDateButton").classList.remove("hidden");
+}
+
+function eventDateAddDateItem()
+{
+    var count = document.getElementById("eventDateList").childElementCount;
+    if (count > 6)
+        return;
+
+    var item = $("#eventDateItemTemplate").clone()
+               .attr("id", "eventDateItem" + count)
+               .removeClass("hidden")
+               .appendTo("#eventDateList");
+
+    item.children('button').on('click', function() { eventDateRemoveDateItem(count); });
+    item.children('.checkbox').on('click', function(ev) {
+      if (ev.target.checked)
+          item.children('#secondDate').removeClass('hidden');
+      else
+          item.children('#secondDate').addClass('hidden');
+    });
+
+    item.children('[type="date"]').datepicker();
+    item.children('#secondDate').addClass("hidden");
+
+    if (count === 6)
+        document.getElementById("eventAddDateButton").classList.add("hidden");
 }
