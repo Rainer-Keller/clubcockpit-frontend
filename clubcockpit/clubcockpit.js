@@ -207,8 +207,6 @@ var events = new Events();
 
 $(document).ready(function() {
     events.load();
-    $("#date").datepicker();
-    $("#datefoo").datepicker();
 
   $.fn.wizard.logging = true;
   wizard = $('#eventWizard').wizard({
