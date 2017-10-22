@@ -397,16 +397,16 @@ function eventDateAddDateItem()
                .removeClass("hidden")
                .appendTo("#eventDateList");
 
-    item.children('button').on('click', function() { eventDateRemoveDateItem(count); });
-    item.children('.checkbox').on('click', function(ev) {
+    item.find('button').on('click', function() { eventDateRemoveDateItem(count); });
+    item.find('.checkbox').on('click', function(ev) {
       if (ev.target.checked)
-          item.children('#secondDate').removeClass('hidden');
+          item.find('#secondDate').removeClass('hidden');
       else
-          item.children('#secondDate').addClass('hidden');
+          item.find('#secondDate').addClass('hidden');
     });
 
-    item.children('[type="date"]').datepicker();
-    item.children('#secondDate').addClass("hidden");
+    item.find('[type="date"]').datepicker();
+    item.find('#secondDate').addClass("hidden");
 
     if (count === 6)
         document.getElementById("eventAddDateButton").classList.add("hidden");
