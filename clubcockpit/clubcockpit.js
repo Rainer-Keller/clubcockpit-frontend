@@ -323,6 +323,7 @@ $(document).ready(function() {
     e.preventDefault();
 
   wizard.cards["EventType"].on("deselect", enableOptionalCards)
+  wizard.cards["EventType"].on("deselect", updateDateListOptions)
   wizard.cards["EventType"].on("reset", disableOptionalCards)
   wizard.cards["EventType"].on("select", disableOptionalCards)
 
@@ -368,6 +369,20 @@ function enableOptionalCards()
         wizard.cards["Workshop"].enable();
 }
 
+function updateDateListOptions()
+{
+    $("#eventDateList").empty(); // clear all existing dates
+
+    var button = document.getElementById("eventAddDateButton");
+
+    if (currentEventType() === "WS")
+        button.classList.remove("hidden");
+    else
+        button.classList.add("hidden");
+
+    eventDateAddDateItem(); // add one date by default
+}
+
 function currentEventType()
 {
     var e = document.getElementById("eventType");
@@ -407,6 +422,22 @@ function eventDateAddDateItem()
 
     item.find('[type="date"]').datepicker();
     item.find('#secondDate').addClass("hidden");
+
+    var eventType = currentEventType();
+    if (eventType === "S") {
+        item.find('button').addClass('hidden');
+    } else if (eventType === "CCN" || eventType === "SCN") {
+        item.find('.checkbox').addClass('hidden');
+        item.find('button').addClass('hidden');
+    } else if (eventType === "WS") {
+        // empty
+    } else if (eventType === "C") {
+        // force date range
+        item.find('.checkbox input').prop('checked', true);
+        item.find('.checkbox').addClass('hidden');
+        item.find('#secondDate').removeClass('hidden');
+        item.find('button').addClass('hidden');
+    }
 
     if (count === 6)
         document.getElementById("eventAddDateButton").classList.add("hidden");
