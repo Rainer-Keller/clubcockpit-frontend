@@ -357,7 +357,6 @@ function disableOptionalCards()
 
 function enableOptionalCards()
 {
-    console.log("enable cards #############33");
     disableOptionalCards(wizard);
 
     var type = currentEventType();
