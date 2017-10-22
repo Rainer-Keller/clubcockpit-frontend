@@ -306,7 +306,7 @@ $(document).ready(function() {
   wizard.el.find(".wizard-success .im-done").click(function() {
     wizard.hide();
     setTimeout(function() {
-      wizard.reset();	
+      wizard.reset();
     }, 250);
 
   });
