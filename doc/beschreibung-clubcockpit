@@ -132,3 +132,63 @@ Abstimmungen
 
 Es werden aktuelle und bereits abgeschlossene Abstimmungen angezeigt.
 Zu den bereits abgeschlossenen Abstimmungen kann das Ergebnis eingesehen werden.
+
+
+API
+---
+
+Event Datentyp:
+
+{
+    type: string [ "S", "SCN", "CCN", "WS", "C"]
+    title: string
+    dancelocation {
+        name: string
+        postcode: string
+        city: string
+        address: string
+        country: string
+    }
+    date: [
+              { start: date, end: date }
+    ]
+
+    leader: [ string ]
+    program: [ string ]
+    gema: {
+        foreign: true
+        halls: [ integer]
+    }
+
+    class: {
+        type: string ["beginner", "advanced"]
+        openHouse: [ date ]
+        weekDay: integer [ -1, 0, 1, 2, 3, 4, 5, 6]
+        time: string
+        withinClubnight: boolean
+        endsWithGraduation: boolean
+        attendees: integer
+    }
+
+    ccn: {
+          originalDate: date
+         }
+
+    workshop {
+        type: string ["mini", "midi", "maxi", "super"]
+        type2: string ["dancer", "leader", "weekend"]
+        attendees: integer
+        revenues: float
+    }
+
+    contact:{
+          name: string
+          email: string
+          telefon: string
+        }
+    marketing {
+        url: string
+        publishCalendar: boolean
+        note: string
+    }
+}
