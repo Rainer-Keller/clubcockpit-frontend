@@ -1,0 +1,194 @@
+Club-Cockpit
+-------------
+
+Im Club-Cockit können Club-Vertreter folgende Information verarbeiten:
+
+* Eigene Daten
+* Clubdaten
+* Veranstaltungen verwalten
+* Abstimmungen
+
+
+Eigene Daten
+------------
+
+Die persönlichen Daten des angemeldeten Nutzers können eingesehen und
+geändert werden.
+
+    * Clubzugehörigkeit (nicht änderbar)
+    * Mitgliedsnummer (nicht änderbar)
+    * Passwort
+    * Name (nicht änderbar)
+    * Adresse
+    * PLZ
+    * Ort
+    * Land
+    * Telefon
+    * Fax
+    * Email-Adresse
+    * Webseite ?
+    * EAASDC-Newsletter
+    * Emails im HTML-Format
+    * Berechtigungen (nicht änderbar)
+
+Clubdaten
+---------
+
+Die Clubdaten des angemeldeten Nutzer können eingesehen werden
+
+    * Directory Einträge
+    * Erhebungsbogen
+
+Veranstaltungen
+---------------
+
+Der Benutzer verwaltet die Veranstaltungen seines Clubs.
+Neue Veranstaltungen können angelegt werden.
+Dem Nutzer werden die laufenden und zukünftigen Veranstaltungen seines
+Clubs angezeigt. Diese können geändert oder abgesagt werden.
+Es gibt weiterhin die Möglichkeit bereits abgeschlossene Veranstaltungen einzusehen.
+Bei Veranstaltungen, die das einreichen einer MFL erfordern wird die MFL als Download angeboten.
+
+Die Anmeldung eines Events geschieht wie folgt:
+
+Schritt 1: Auswahl der Eventart (immer)
+
+    - Auswahl der Eventart: Special (S), Special Club Night (SCN), Besonderer/verschobener Clubabend (CCN), Workshop, Class
+
+Schritt 2: Allgemeine Angaben (immer)
+
+    - Name der Veranstaltung (nicht bei Classes)
+    - Tanzplatz: Name, Plz, Ort, Strasse, Land (AT, BE, CH, DE, FR, LI, NL, RU, SK)
+
+Schritt 3: Datum (immer)
+
+    - Bei S: ein Datum oder ein von-bis-Datum
+    - Bei SCN und CCN: ein Datum
+    - Bei WS: ein oder mehrere Einzel- oder von-bis-Datumsangaben
+    - Bei C: ein von-bis-Datum
+
+Schritt 4: Tanzprogramm (immer)
+
+    - Tanzprogramm
+    - Bei WS, C: nur ein Programm
+    - Leader
+
+Schritt 5: GEMA (immer)
+
+    - Auswahl: GEMA-Deckung anderweitig
+    - Bei Specials: Angabe von Hallenanzahl ([1-6],7+) pro Tag
+    - Anzeige der errechneten GEMA-Umlage
+
+Schritt 6: Classangaben (nur für Classes)
+    - Auswahl: Fortgeschrittene Class, Beginner Class
+    - 0-4 Open House Termine
+    - Wochentag oder "an wechselnden Tagen"
+    - Zeit
+    - Class während Clubabend
+    - Class endet mit/ohne Graduation
+    - Anzahl der Students
+
+Schritt 7: CCN (nur für CCN)
+    - Datum des Clubabends, der verschoben wird, kann auch leer sein
+
+Schritt 8: Workshopangaben (nur für WS)
+
+    - Auswahl: Workshop Mini, Workshop Midi, Workshop Maxi, Workshop Super
+    - Art des Workshops: WS für Tänzer, WS für Leader, Freizeitwochenende
+    - Anzahl der Teilnehmer
+    - Einnahmen
+
+Schritt 9: Kontaktdaten (immer)
+    - Ansprechpartner
+    - Email
+    - Telefon
+
+Schritt 10: Markteing (immer)
+
+    - evtl. Flyer URL
+    - Veröffentlichung im Kalender
+    - freitext Feld für Hinweise
+
+Schritt 11: Zusammenfassung (immer)
+
+    - Anzeige der eingegebenen Daten zur Kontrolle
+
+
+
+# Anmeldungen von Veranstaltungen
+  <DETAILS?>
+
+# Detailansicht von Veranstaltungen
+  Hier wird er aktuelle Bearbeitungsstatus angezeigt: bearbeitet, bezahlt, im Kalender veröffentlicht
+
+# Ändern von Veranstaltungen
+  <DETAILS?>
+
+# Absagen von Veranstaltungen
+  <DETAILS?>
+
+Abstimmungen
+--------------
+
+Es werden aktuelle und bereits abgeschlossene Abstimmungen angezeigt.
+Zu den bereits abgeschlossenen Abstimmungen kann das Ergebnis eingesehen werden.
+
+
+API
+---
+
+Event Datentyp:
+
+{
+    type: string [ "S", "SCN", "CCN", "WS", "C"]
+    title: string
+    dancelocation {
+        name: string
+        postcode: string
+        city: string
+        address: string
+        country: string
+    }
+    date: [
+              { start: date, end: date }
+    ]
+
+    leader: [ string ]
+    program: [ string ]
+    gema: {
+        foreign: true
+        halls: [ integer]
+    }
+
+    class: {
+        type: string ["beginner", "advanced"]
+        openHouse: [ date ]
+        weekDay: integer [ -1, 0, 1, 2, 3, 4, 5, 6]
+        time: string
+        withinClubnight: boolean
+        endsWithGraduation: boolean
+        attendees: integer
+    }
+
+    ccn: {
+          originalDate: date
+         }
+
+    workshop {
+        type: string ["mini", "midi", "maxi", "super"]
+        type2: string ["dancer", "leader", "weekend"]
+        attendees: integer
+        revenues: float
+    }
+
+    contact:{
+          name: string
+          email: string
+          telefon: string
+        }
+    marketing {
+        url: string
+        publishCalendar: boolean
+        note: string
+    }
+}
