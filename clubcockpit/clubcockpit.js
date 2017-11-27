@@ -341,10 +341,9 @@ $(document).ready(function() {
   $('#buttonNew').click(function(e) {
     e.preventDefault();
 
-  wizard.cards["EventType"].on("deselect", enableOptionalCards)
-  wizard.cards["EventType"].on("deselect", updateDateListOptions)
-  wizard.cards["EventType"].on("reset", disableOptionalCards)
-  wizard.cards["EventType"].on("select", disableOptionalCards)
+  wizard.cards["EventType"].on("deselect", function() { enableOptionalCards(); updateDateListOptions();});
+  wizard.cards["EventType"].on("reset", disableOptionalCards);
+  wizard.cards["EventType"].on("selected", disableOptionalCards);
 
   disableOptionalCards();
   wizard.show();
