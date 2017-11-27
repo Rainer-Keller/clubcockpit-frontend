@@ -387,6 +387,25 @@ function enableOptionalCards()
         wizard.cards["Workshop"].enable();
 }
 
+function getDates()
+{
+    var rc = [];
+    var i = 0;
+
+    do {
+        var elem = $('#eventDateItem' + i + ' input');
+        if (elem.length === 0)
+            break;
+
+        if (elem[2].checked)
+            rc.push([elem[0].value, elem[1].value]);
+        else
+            rc.push([elem[0].value]);
+        i = i + 1;
+    } while(true);
+    return rc;
+}
+
 Date.prototype.isValid = function () {
     // An invalid date object returns NaN for getTime() and NaN is the only
     // object not strictly equal to itself.
