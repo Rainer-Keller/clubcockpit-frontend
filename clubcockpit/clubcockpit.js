@@ -203,6 +203,24 @@ function removeEventDialog(i) {
   });
 }
 
+//-- add new values for chosen --
+// Function generator for keyhandler
+function newValueRegister(id) {
+    return function(evt) {
+      var stroke;
+      stroke = (_ref = evt.which) != null ? _ref : evt.keyCode;
+
+      if (stroke == 13) { // 13 = enter
+        if (evt.target.value.length === 0)
+          return;
+
+        $(id).append('<option value="' + evt.target.value + '" selected="selected">' + evt.target.value + '</option>');
+        $(id).trigger('chosen:updated');
+        evt.target.value = '';
+    }
+    }
+}
+
 var events = new Events();
 
 $(document).ready(function() {
@@ -225,6 +243,7 @@ $(document).ready(function() {
   });
 
   $(".chzn-select").select2();
+  $("#leader").bind( "keyup", newValueRegister('#leaderselection'));
 
   $('#fqdn').on('input', function() {
     if ($(this).val().length != 0) {
