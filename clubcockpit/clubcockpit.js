@@ -349,6 +349,7 @@ $(document).ready(function() {
   wizard.show();
 
   $("#eventAddDateButton").on("click", eventDateAddDateItem);
+  $("#openHouseAddDateButton").on("click", openHouseAddDateItem);
 
   });
 });
@@ -379,12 +380,14 @@ function enableOptionalCards()
     disableOptionalCards(wizard);
 
     let type = currentEventType();
-    if (type === "C")
+    if (type === "C") {
         wizard.cards["Classes"].enable();
-    else if (type === "CCN")
+        wizard.cards["Gema"].disable(true /* hide */);
+    } else if (type === "CCN") {
         wizard.cards["CCN"].enable();
-    else if (type === "WS")
+    } else if (type === "WS") {
         wizard.cards["Workshop"].enable();
+    }
 }
 
 function getDates()
