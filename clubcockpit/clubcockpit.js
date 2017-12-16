@@ -485,3 +485,31 @@ function eventDateAddDateItem()
     if (count === 6)
         document.getElementById("eventAddDateButton").classList.add("hidden");
 }
+
+function openHouseRemoveDateItem(index)
+{
+    let count = document.getElementById("openHouseDateList").childElementCount;
+
+    $("#openHouseDateItem" + index).remove();
+
+    if (count-1 < 4)
+        document.getElementById("openHouseAddDateButton").classList.remove("hidden");
+}
+
+function openHouseAddDateItem()
+{
+    let count = document.getElementById("openHouseDateList").childElementCount;
+    if (count >= 4)
+        return;
+
+    let item = $("#openHouseDateItemTemplate").clone()
+               .attr("id", "openHouseDateItem" + count)
+               .removeClass("hidden")
+               .appendTo("#openHouseDateList");
+
+    item.find('button').on('click', function() { openHouseRemoveDateItem(count); });
+    item.find('[type="date"]').datepicker();
+
+    if (count+1 === 4)
+        document.getElementById("openHouseAddDateButton").classList.add("hidden");
+}

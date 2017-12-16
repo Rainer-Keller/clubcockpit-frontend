@@ -342,6 +342,13 @@
         <div class="wizard-card" data-cardname="Classes">
           <h3>Angaben für Classes</h3>
 
+          <!-- vvv Template for open house date vvv -->
+          <div id="openHouseDateItemTemplate" class="hidden">
+            <input type="date" readonly placeholder="Auswählen">
+            <button type="button" class="btn btn-primary"><span class="fa fa-trash"></span></button>
+          </div>
+          <!-- ^^^ Template for date item ^^^ -->
+
           <div class="wizard-input-section">
             <div class="form-group">
               <div class="col-sm-8">
@@ -357,7 +364,9 @@
             <div class="form-group">
               <div class="col-sm-8">
                 <label for="title">Datum der Open-Houses</label>
-                <input type="date" readonly class="form-control" id="datefoo" placeholder="Datum" data-serialize="1">
+                <div id="openHouseDateList">
+                </div>
+                <button id="openHouseAddDateButton" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Datum hinzufügen</button>
               </div>
             </div>
 
@@ -366,14 +375,14 @@
                 <label for="dancelocationCountry">Wochentag</label>
                 <select class="form-control" id="dancelocationCountry" data-serialize="1">
                   <option disabled selected value style="display:none">Bitte auswählen</option>
-                  <option>wechselnde Tage</option>
-                  <option>Montag</option>
-                  <option>Dienstag</option>
-                  <option>Mittwoch</option>
-                  <option>Donnerstag</option>
-                  <option>Freitag</option>
-                  <option>Samstag</option>
-                  <option>Sonntag</option>
+                  <option value="xx">wechselnde Tage</option>
+                  <option value="mo">Montag</option>
+                  <option value="tu">Dienstag</option>
+                  <option value="we">Mittwoch</option>
+                  <option value="th">Donnerstag</option>
+                  <option value="fr">Freitag</option>
+                  <option value="sa">Samstag</option>
+                  <option value="su">Sonntag</option>
                 </select>
               </div>
             </div>
