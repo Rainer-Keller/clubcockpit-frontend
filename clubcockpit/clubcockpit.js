@@ -22,9 +22,9 @@ Events.prototype.updateView = function() {
               );
     }
 
-    for (var i in this.events) {
-      var item = this.events[i];
-      var icon;
+    for (let i in this.events) {
+      let item = this.events[i];
+      let icon;
 
       if (item.type == "class") {
         icon = '<i class="fa fa-certificate"></i>';
@@ -71,11 +71,11 @@ Events.prototype.removeEvent = function(index) {
 }
 
 Events.prototype.load = function() {
-  var self = this;
+  let self = this;
 
-  var jqx = $.getJSON("events.json", function() {})
+  let jqx = $.getJSON("events.json", function() {})
   .done(function( data ) {
-    for(var i in data) {
+    for(let i in data) {
         Events.prototype.addEvent.call(self, data[i]);
     }
     Events.prototype.updateView.call(self);
@@ -118,7 +118,7 @@ function setupDialog(title, item) {
 
 function dialogToObject()
 {
-    var rc = {};
+    let rc = {};
     rc.title = $('#eventModal #title').val();
     rc.location = $('#eventModal #location').val();
     rc.date = $('#eventModal #date').val();
@@ -132,7 +132,7 @@ function viewEventDialog(i) {
 }
 
 function validateEventDialog() {
-    var rc = true;
+    let rc = true;
     $('#eventModal #errors').empty();
 
     if (!$('#eventModal #title').val().length) {
@@ -167,7 +167,7 @@ function editEventDialog(i) {
     $('#eventModal #save').on('click', function(event) {
       if (!validateEventDialog())
           return;
-      var item = dialogToObject();
+      let item = dialogToObject();
       item.disabled = events.events[i].disabled;
       events.events[i] = item;
       events.updateView();
@@ -183,7 +183,7 @@ function createNewEvent()
     $('#eventModal #save').on('click', function(event) {
       if (!validateEventDialog())
           return;
-      var item = dialogToObject();
+      let item = dialogToObject();
       item.disabled = false;
       events.events.push(item);
       events.updateView();
@@ -193,7 +193,7 @@ function createNewEvent()
 }
 
 function removeEventDialog(i) {
-  var item = events.events[i];
+  let item = events.events[i];
   $('#removeModal #title').text(item.title);
   $('#removeModal').modal('show');
   $('#removeModal #ok').on('click', function(event) {
@@ -254,7 +254,7 @@ $(document).ready(function() {
     }
   });
 
-  var pattern = /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
+  let pattern = /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
   x = 46;
 
   $('#ip').on('input', function() {
@@ -269,7 +269,7 @@ $(document).ready(function() {
       return false;
     }
   }).keyup(function() {
-    var $this = $(this);
+    let $this = $(this);
     if (!pattern.test($this.val())) {
       //$('#validate_ip').text('Not Valid IP');
       console.log('Not Valid IP');
@@ -280,11 +280,11 @@ $(document).ready(function() {
       x = 46;
     } else {
       x = 0;
-      var lastChar = $this.val().substr($this.val().length - 1);
+      let lastChar = $this.val().substr($this.val().length - 1);
       if (lastChar == '.') {
         $this.val($this.val().slice(0, -1));
       }
-      var ip = $this.val().split('.');
+      let ip = $this.val().split('.');
       if (ip.length == 4) {
         //$('#validate_ip').text('Valid IP');
         console.log('Valid IP');
@@ -304,7 +304,7 @@ $(document).ready(function() {
   });
 
   wizard.on("submit", function(wizard) {
-    var submit = {
+    let submit = {
       "hostname": $("#new-server-fqdn").val()
     };
 
@@ -354,8 +354,8 @@ $(document).ready(function() {
 });
 
 function validateEventTitle(el) {
-  var name = el.val();
-  var retValue = {};
+  let name = el.val();
+  let retValue = {};
 
   if (name == "") {
     retValue.status = false;
@@ -378,7 +378,7 @@ function enableOptionalCards()
 {
     disableOptionalCards(wizard);
 
-    var type = currentEventType();
+    let type = currentEventType();
     if (type === "C")
         wizard.cards["Classes"].enable();
     else if (type === "CCN")
@@ -416,7 +416,7 @@ function updateDateListOptions()
 {
     $("#eventDateList").empty(); // clear all existing dates
 
-    var button = document.getElementById("eventAddDateButton");
+    let button = document.getElementById("eventAddDateButton");
 
     if (currentEventType() === "WS")
         button.classList.remove("hidden");
@@ -428,13 +428,13 @@ function updateDateListOptions()
 
 function currentEventType()
 {
-    var e = document.getElementById("eventType");
+    let e = document.getElementById("eventType");
     return e.value;
 }
 
 function eventDateRemoveDateItem(index)
 {
-    var count = document.getElementById("eventDateList").childElementCount;
+    let count = document.getElementById("eventDateList").childElementCount;
     if (count === 1)
         return;
 
@@ -446,11 +446,11 @@ function eventDateRemoveDateItem(index)
 
 function eventDateAddDateItem()
 {
-    var count = document.getElementById("eventDateList").childElementCount;
+    let count = document.getElementById("eventDateList").childElementCount;
     if (count > 6)
         return;
 
-    var item = $("#eventDateItemTemplate").clone()
+    let item = $("#eventDateItemTemplate").clone()
                .attr("id", "eventDateItem" + count)
                .removeClass("hidden")
                .appendTo("#eventDateList");
@@ -466,7 +466,7 @@ function eventDateAddDateItem()
     item.find('[type="date"]').datepicker();
     item.find('#secondDate').addClass("hidden");
 
-    var eventType = currentEventType();
+    let eventType = currentEventType();
     if (eventType === "S") {
         item.find('button').addClass('hidden');
     } else if (eventType === "CCN" || eventType === "SCN") {
