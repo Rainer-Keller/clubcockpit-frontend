@@ -486,6 +486,41 @@ function eventDateAddDateItem()
         document.getElementById("eventAddDateButton").classList.add("hidden");
 }
 
+function calulateGemaContribution()
+{
+    if (document.getElementById("gemabackingOtherwise").checked)
+        return "0 €";
+
+    let type = currentEventType();
+    console.log(type);
+    if (type === "C") {
+        return "unbekannt";
+    } else if (type === "CCN") {
+        return "0 €";
+    } else if (type === "WS") {
+        let size = document.getElementById("workshopsize").value;
+        if (size === "mini") {
+            return "8 €";
+        } else if (size == "midi") {
+            return "25 €";
+        } else if (size == "maxi") {
+            return "40 €";
+        } else if (size == "super") {
+            return "60 €";
+        }
+    } else if (type === "SCN") {
+        return "17 €";
+    } else if (type === "S") {
+        let firstHalls = days;
+        let additionalHalls = totalHalls - fristHalls;
+        if (additionalHalls > 5) // maximum of 5 additional halls
+            additionalHalls = 5;
+        return firstHalls * 80 + additionalHalls * 50 + " €";
+    } else {
+        return "unbekannt";
+    }
+}
+
 function openHouseRemoveDateItem(index)
 {
     let count = document.getElementById("openHouseDateList").childElementCount;
