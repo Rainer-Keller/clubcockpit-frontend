@@ -552,6 +552,8 @@ function calulateGemaContribution()
             return "40 €";
         } else if (size == "super") {
             return "60 €";
+        } else {
+          console.log("Unknown workshop size:", size);
         }
     } else if (type === "SCN") {
         return "17 €";
