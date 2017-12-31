@@ -345,6 +345,8 @@ $(document).ready(function() {
   wizard.cards["EventType"].on("reset", disableOptionalCards);
   wizard.cards["EventType"].on("selected", disableOptionalCards);
   wizard.cards["date"].on("deselect", updateHallList);
+  wizard.cards["Gema"].on("selected", updateGemaContribution);
+  $("#gemabackingOtherwise").on("click", updateGemaContribution);
 
   disableOptionalCards();
   wizard.show();
@@ -537,7 +539,6 @@ function calulateGemaContribution()
         return "0 €";
 
     let type = currentEventType();
-    console.log(type);
     if (type === "C") {
         return "unbekannt";
     } else if (type === "CCN") {
@@ -558,8 +559,17 @@ function calulateGemaContribution()
     } else if (type === "SCN") {
         return "17 €";
     } else if (type === "S") {
-        let firstHalls = days;
-        let additionalHalls = totalHalls - fristHalls;
+        let halls = getHalls();
+        let firstHalls = 0;
+        let totalHalls = 0;
+
+        for (let i = 0; i < halls.length; i++) {
+            if (halls[i] > 0)
+                firstHalls++;
+            totalHalls += halls[i];
+        }
+
+        let additionalHalls = totalHalls - firstHalls;
         if (additionalHalls > 5) // maximum of 5 additional halls
             additionalHalls = 5;
         return firstHalls * 80 + additionalHalls * 50 + " €";
@@ -594,4 +604,10 @@ function openHouseAddDateItem()
 
     if (count+1 === 4)
         document.getElementById("openHouseAddDateButton").classList.add("hidden");
+}
+
+function updateGemaContribution()
+{
+    let value = calulateGemaContribution();
+    document.getElementById("gemaContribution").innerHTML = value;
 }
