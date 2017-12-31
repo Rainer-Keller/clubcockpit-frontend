@@ -478,6 +478,35 @@
         </div>
       </div>
 
+        <div class="wizard-card" data-cardname="Halls">
+          <h3>Angaben für Hallen</h3>
+
+          <div class="wizard-input-section">
+            <div class="form-group">
+              <div class="row">
+                  <div class="col-sm-6">Datum</div>
+                  <div class="col-sm-6">Hallen</div>
+              </div>
+              <div id="hallItemList">
+              </div>
+            </div>
+          </div>
+
+          <!-- vvv Template for date item vvv -->
+          <div id="hallItemTemplate" class="hidden">
+            <div class="row">
+                <div class="col-sm-4" id="hallItemDate">
+                    Datum
+                </div>
+                <div class="col-sm-8">
+                    <input type="number" value="1" required min="0" max="10">
+                </div>
+            </div>
+          </div>
+          <!-- ^^^ Template for date item ^^^ -->
+        </div>
+      </div>
+
         <!-- Step 5 General information -->
         <div class="wizard-card" data-cardname="Gema">
           <h3>GEMA</h3>
@@ -488,6 +517,10 @@
             </p>
             <div class="checkbox">
                 <label><input type="checkbox" id="gemabackingOtherwise" value="">GEMA-Deckung anderweitig - nicht EAASDC</label>
+            </div>
+            <br>
+            <div class="col-sm-8">
+              GEMA Beitrag:<div id="gemaContribution"></div>
             </div>
           </div>
         </div>

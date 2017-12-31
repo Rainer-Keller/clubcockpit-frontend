@@ -344,6 +344,7 @@ $(document).ready(function() {
   wizard.cards["EventType"].on("deselect", function() { enableOptionalCards(); updateDateListOptions();});
   wizard.cards["EventType"].on("reset", disableOptionalCards);
   wizard.cards["EventType"].on("selected", disableOptionalCards);
+  wizard.cards["date"].on("deselect", updateHallList);
 
   disableOptionalCards();
   wizard.show();
@@ -373,6 +374,7 @@ function disableOptionalCards()
     wizard.cards["Classes"].disable(true /* hide */);
     wizard.cards["CCN"].disable(true /* hide */);
     wizard.cards["Workshop"].disable(true /* hide */);
+    wizard.cards["Halls"].disable(true /* hide */);
 }
 
 function enableOptionalCards()
@@ -387,6 +389,8 @@ function enableOptionalCards()
         wizard.cards["CCN"].enable();
     } else if (type === "WS") {
         wizard.cards["Workshop"].enable();
+    } else if (type === "S") {
+        wizard.cards["Halls"].enable();
     }
 }
 
@@ -427,6 +431,44 @@ function updateDateListOptions()
         button.classList.add("hidden");
 
     eventDateAddDateItem(); // add one date by default
+}
+
+function updateHallList()
+{
+    if (currentEventType() !== "S")
+        return;
+
+    $("#hallItemList").empty(); // clear all
+
+    let dates = getDates();
+    let beginDate = dates[0][0];
+    let endDate = dates[0][1];
+    if (!endDate)
+        endDate = new Date(beginDate);
+    let days = 1 + Math.round((endDate-beginDate)/(1000*60*60*24));
+
+    for (let i = 0; i < days; i++) {
+        let item = $("#hallItemTemplate").clone()
+                   .attr("id", "hallItem" + i)
+                   .removeClass("hidden")
+                   .appendTo("#hallItemList");
+        item.find("#hallItemDate").html(new Date(beginDate.getTime() + i*86400000).toLocaleDateString());
+    }
+}
+
+function getHalls()
+{
+    let rc = [];
+    let i = 0;
+
+    do {
+        var elem = $('#hallItem' + i + ' input');
+        if (elem.length === 0)
+            break;
+        rc.push(parseInt(elem[0].value));
+        i = i + 1;
+    } while(true);
+    return rc;
 }
 
 function currentEventType()
