@@ -396,11 +396,11 @@ function enableOptionalCards()
 
 function getDates()
 {
-    var rc = [];
-    var i = 0;
+    let rc = [];
+    let i = 0;
 
     do {
-        var elem = $('#eventDateItem' + i + ' input');
+        let elem = $('#eventDateItem' + i + ' input');
         if (elem.length === 0)
             break;
 
