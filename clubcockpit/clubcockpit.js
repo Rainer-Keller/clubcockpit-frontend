@@ -405,9 +405,9 @@ function getDates()
             break;
 
         if (elem[2].checked)
-            rc.push([elem[0].value, elem[1].value]);
+            rc.push([new Date(elem[0].value), new Date(elem[1].value)]);
         else
-            rc.push([elem[0].value]);
+            rc.push([new Date(elem[0].value)]);
         i = i + 1;
     } while(true);
     return rc;
