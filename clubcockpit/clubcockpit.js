@@ -611,3 +611,11 @@ function updateGemaContribution()
     let value = calulateGemaContribution();
     document.getElementById("gemaContribution").innerHTML = value;
 }
+
+function previewFlyerURL()
+{
+    let url = document.getElementById("flyerURL").value;
+    if (!(url.startsWith("http://") || url.startsWith("https://")))
+      url = "http://" + url;
+    window.open(url, 'Flyer-Vorschau', 'status=no,titlebar=no,toolbar=no');
+}
