@@ -206,7 +206,7 @@
             <div class="form-group">
               <div class="col-sm-8">
                 <label for="title">Name der Veranstaltung</label>
-                <input type="text" class="form-control" id="title" placeholder="Titel" data-validate="validateEventTitle" data-serialize="1">
+                <input type="text" class="form-control" id="eventTitle" placeholder="Titel" data-validate="validateEventTitle" data-serialize="1">
               </div>
             </div>
           </div>
@@ -319,13 +319,13 @@
                       <option value="sq.c4">C4</option>
                     </optgroup>
                     <optgroup label="Round Dance">
-                      <option value="rd">Phase I</option>
-                      <option value="rd">Phase II</option>
-                      <option value="rd">Phase III</option>
-                      <option value="rd">Phase IV</option>
-                      <option value="rd">Phase V</option>
-                      <option value="rd">Phase VI</option>
-                      <option value="rd">Phase VII</option>
+                      <option value="rd.1">Phase I</option>
+                      <option value="rd.2">Phase II</option>
+                      <option value="rd.3">Phase III</option>
+                      <option value="rd.4">Phase IV</option>
+                      <option value="rd.5">Phase V</option>
+                      <option value="rd.6">Phase VI</option>
+                      <option value="rd.7">Phase VII</option>
                     </optgroup>
                     <optgroup label="Andere">
                       <option value="ct">Contra</option>
@@ -352,11 +352,11 @@
           <div class="wizard-input-section">
             <div class="form-group">
               <div class="col-sm-8">
-                <label for="dancelocationCountry">Class-Typ</label>
-                <select class="form-control" id="dancelocationCountry" data-serialize="1">
+                <label for="classType">Class-Typ</label>
+                <select class="form-control" id="classType" data-serialize="1">
                   <option disabled selected value style="display:none">Bitte auswählen</option>
-                  <option>Beginner</option>
-                  <option>Fortgeschrittene</option>
+                  <option value="beginner">Beginner</option>
+                  <option value="advanced">Fortgeschrittene</option>
                 </select>
               </div>
             </div>
@@ -372,8 +372,8 @@
 
             <div class="form-group">
               <div class="col-sm-8">
-                <label for="dancelocationCountry">Wochentag</label>
-                <select class="form-control" id="dancelocationCountry" data-serialize="1">
+                <label for="classWeekday">Wochentag</label>
+                <select class="form-control" id="classWeekday" data-serialize="1">
                   <option disabled selected value style="display:none">Bitte auswählen</option>
                   <option value="xx">wechselnde Tage</option>
                   <option value="mo">Montag</option>
@@ -389,30 +389,30 @@
 
             <div class="form-group">
               <div class="col-sm-8">
-                <label for="title">Zeit</label>
-                <input type="text" class="form-control" id="title" placeholder="00:00" data-serialize="1">
+                <label for="classTime">Zeit</label>
+                <input type="text" class="form-control" id="classTime" placeholder="00:00" data-serialize="1">
               </div>
             </div>
 
             <div class="form-group">
               <div class="col-sm-8">
                 <div class="checkbox">
-                  <label><input type="checkbox" value="">Class während des Clubabends</label>
+                  <label><input id="classDuringClubnight" type="checkbox" value="">Class während des Clubabends</label>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-8">
                 <div class="checkbox">
-                  <label><input type="checkbox" value="">Class endet mit Graduation</label>
+                  <label><input id="classEndsWithGraduation" type="checkbox" value="">Class endet mit Graduation</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col-sm-8">
-                <label for="title">Anzahl der Students</label>
-                <input type="text" class="form-control" id="title" data-serialize="1">
+                <label for="classStudentCount">Anzahl der Students</label>
+                <input type="number" class="form-control" min="0" id="classStudentCount" data-serialize="1">
               </div>
             </div>
           </div>
@@ -424,8 +424,8 @@
           <div class="wizard-input-section">
             <div class="form-group">
               <div class="col-sm-8">
-                <label for="title">Datum des verschobenen Clubabends</label>
-                <input type="date" readonly class="form-control" id="datefoo" placeholder="Datum" data-serialize="1">
+                <label for="ccnDateMoved">Datum des verschobenen Clubabends</label>
+                <input type="date" readonly class="form-control" id="ccnDateMoved" placeholder="Datum" data-serialize="1">
               </div>
             </div>
           </div>
@@ -438,8 +438,8 @@
           <div class="wizard-input-section">
             <div class="form-group">
               <div class="col-sm-8">
-                <label for="dancelocationCountry">Workshop-Typ</label>
-                <select class="form-control" id="workshopsize" data-serialize="1">
+                <label for="workshopSize">Workshop-Typ</label>
+                <select class="form-control" id="workshopSize" data-serialize="1">
                   <option disabled selected value style="display:none">Bitte auswählen</option>
                   <option value="mini">Mini</option>
                   <option value="midi">Midi</option>
@@ -451,28 +451,28 @@
 
             <div class="form-group">
               <div class="col-sm-8">
-                <label for="dancelocationCountry">Art des Workshops</label>
-                <select class="form-control" id="workshoptype" data-serialize="1">
+                <label for="workshopType">Art des Workshops</label>
+                <select class="form-control" id="workshopType" data-serialize="1">
                   <option disabled selected value style="display:none">Bitte auswählen</option>
-                  <option>Tänzer</option>
-                  <option>Leader</option>
-                  <option>Freizeitwochenende</option>
+                  <option value="dancer">Tänzer</option>
+                  <option value="leader">Leader</option>
+                  <option value="weekend">Freizeitwochenende</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col-sm-8">
-                <label for="title">Anzahl der Teilnehmer</label>
-                <input type="text" class="form-control" id="title" data-serialize="1">
+                <label for="workshopParticipants">Anzahl der Teilnehmer</label>
+                <input type="number" class="form-control" min="0" id="workshopParticipants" data-serialize="1">
               </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-8">
-              <label for="title">Einnahmen</label>
-              <input type="text" class="form-control" id="title" data-serialize="1">
+              <label for="workshopRevenue">Einnahmen</label>
+              <input type="text" class="form-control" id="workshopRevenue" data-serialize="1">
             </div>
           </div>
         </div>
@@ -533,23 +533,23 @@
         <div class="wizard-input-section">
           <div class="form-group">
             <div class="col-sm-8">
-              <label for="title">Ansprechpartner</label>
-              <input type="text" class="form-control" id="title" placeholder="Name" data-serialize="1">
+              <label for="contactPerson">Ansprechpartner</label>
+              <input type="text" class="form-control" id="contactPerson" placeholder="Name" data-serialize="1">
             </div>
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-sm-8">
-            <label for="title">Email</label>
-            <input type="text" class="form-control" id="dancelocationName" placeholder="Email-Adresse" data-serialize="1">
+            <label for="contactEmail">Email</label>
+            <input type="text" class="form-control" id="contactEmail" placeholder="Email-Adresse" data-serialize="1">
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-sm-8">
-            <label for="title">Telefon</label>
-            <input type="text" class="form-control" id="dancelocationPostcode" data-serialize="1">
+            <label for="contactPhone">Telefon</label>
+            <input type="text" class="form-control" id="contactPhone" data-serialize="1">
           </div>
         </div>
       </div>
@@ -560,7 +560,7 @@
         <div class="wizard-input-section">
           <div class="form-group">
             <div class="col-sm-8">
-              <label for="title">Flyer oder Webseite</label>
+              <label for="flyerUrl">Flyer oder Webseite</label>
               <input type="text" class="form-control" id="flyerURL" placeholder="http://" data-serialize="1">
               <button type="button" class="btn btn-sm btn-primary" onclick="previewFlyerURL()">Flyer Vorschau</button>
             </div>
@@ -570,7 +570,7 @@
         <div class="form-group">
           <div class="col-sm-8">
             <div class="checkbox">
-              <label><input type="checkbox" value="">Veröffentlichung im Kalender</label>
+              <label><input id="publishCalendar" type="checkbox" value="">Veröffentlichung im Kalender</label>
             </div>
           </div>
         </div>

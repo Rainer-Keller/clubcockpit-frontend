@@ -544,7 +544,7 @@ function calulateGemaContribution()
     } else if (type === "CCN") {
         return "0 €";
     } else if (type === "WS") {
-        let size = document.getElementById("workshopsize").value;
+        let size = document.getElementById("workshopSize").value;
         if (size === "mini") {
             return "8 €";
         } else if (size == "midi") {
@@ -606,6 +606,16 @@ function openHouseAddDateItem()
         document.getElementById("openHouseAddDateButton").classList.add("hidden");
 }
 
+function getOpenHouseDateList()
+{
+    let rc = [];
+    let items = document.getElementById("openHouseDateList");
+    for (let i = 0; i < items.length; i++) {
+        rc.push(items[i].find('input').value);
+    }
+    return rc;
+}
+
 function updateGemaContribution()
 {
     let value = calulateGemaContribution();
@@ -618,4 +628,113 @@ function previewFlyerURL()
     if (!(url.startsWith("http://") || url.startsWith("https://")))
       url = "http://" + url;
     window.open(url, 'Flyer-Vorschau', 'status=no,titlebar=no,toolbar=no');
+}
+
+function toDict()
+{
+    let event = {};
+    let eventType = currentEventType();
+    event.type = eventType;
+    event.title = document.getElementById('eventTitle').value;
+    let location = {};
+    location.name = document.getElementById('dancelocationName').value;
+    location.address = document.getElementById('dancelocationAddress').value;
+    location.postcode = document.getElementById('dancelocationPostcode').value;
+    location.city = document.getElementById('dancelocationCity').value;
+    location.country = document.getElementById('dancelocationCountry').value;
+    event.location = location;
+    event.dates = getDates();
+    event.leader = $('#leader').val();
+    event.dancelevels= $('#levels').val();
+    if (eventType === 'C') {
+        let class = {};
+        class.type = document.getElementById('classType').value;
+        class.openHouseDates = getOpenHouseDates();
+        class.weekday = document.getElementById('classWeekday').value;
+        class.time = document.getElementById('classTime').value;
+        class.duringClubnight = document.getElementById('classDuringClubnight').checked;
+        class.endsWithGraduation = document.getElementById('classEndsWithGraduation').checked;
+        class.studentCount = document.getElementById('classStudentCount').value;
+        event.class = class;
+    } else if (eventType === 'CCN') {
+        event.ccn = {};
+        event.ccn.dateMoved = new Date(document.getElementById('ccnDateMoved').value);
+    } else if (eventType === 'WS') {
+        let ws = {};
+        ws.size = document.getElementById('workshopSize').value;
+        ws.type = document.getElementById('workshopType').value;
+        ws.participants = document.getElementById('workshopParticipants').value;
+        ws.revenue = document.getElementById('workshopRevenue').value;
+        event.workshop = ws;
+    } else if (eventType === "S") {
+        event.special = {};
+        event.special.halls = getHalls();
+    }
+    event.gemaBackingOtherwise = document.getElementById('gemabackingOtherwise').checked;
+    event.contact = {};
+    event.contact.person = document.getElementById('contactPerson').value;
+    event.contact.email = document.getElementById('contactEmail').value;
+    event.contact.phone = document.getElementById('contactPhone').value;
+    event.publish.url = document.getElementById('flyerUrl').value;
+    event.publish.calendar = document.getElementById('publishCalendar').value;
+    return event;
+}
+
+function summary()
+{
+    let event = toDict();
+    let rc = '';
+
+    rc += 'Event:' + event.title + ' (' + event.type + ')';
+    rc += event.location.name + ', '
+        + event.location.address + ', '
+        + event.location.postcode + ' '
+        + event.location.city + ', '
+        + event.location.country);
+
+    for (let i = 0; i < event.dates.length; i++) {
+        if (event.dates[i].length == 2) {
+            rc += event.dates[i][0] + ' - ' + event.dates[i][1];
+        } else {
+            rc += event.dates[i][0];
+        }
+    }
+
+    rc += event.leader.join();
+    rc += event.levels.join();
+    if (event.class) {
+        rc += event.class.type;
+        rc += event.class.openHouseDates.join();
+        rc += event.class.weekday + event.class.time;
+        if (event.class.duringClubnight)
+            rc += "Class während Clubabend";
+        else
+            rc += "Class nicht während Clubabend";
+        if (event.class.endsWithGraduation)
+            rc += "Class endet mit Graduation";
+        else
+            rc += "Class endet nicht mit Graduation";
+    }
+    if (event.ccn) {
+        rc += "Verschobener Clubabend vom " + event.ccn.dateMoved;
+    }
+    if (event.workshop) {
+        rc += event.workshop.type + " Workshop ";
+        rc += event.workshop.size;
+        rc += event.workshop.participants;
+        rc += event.workshop.revenue;
+    }
+    if (event.special) {
+        rc += "Hallen:" + event.special.halls.join();
+    }
+    if (event.gemaBackingOtherwise)
+        rc += "GEMA Deckung anderweitig"
+    else
+        rc += 'GEMA Umlage: ' + calculateGemaContribution();
+    rc += event.contact.person;
+    rc += event.contact.email;
+    rc += event.contact.phone;
+    rc += event.publish.url;
+    rc += event.publish.calendar;
+    return rc;
 }
