@@ -355,6 +355,8 @@ $(document).ready(function() {
   $("#openHouseAddDateButton").on("click", openHouseAddDateItem);
 
   });
+
+  $('#ccnDateMoved').datepicker();
 });
 
 function validateEventTitle(el) {
@@ -389,10 +391,13 @@ function enableOptionalCards()
         wizard.cards["Gema"].disable(true /* hide */);
     } else if (type === "CCN") {
         wizard.cards["CCN"].enable();
+        wizard.cards["Gema"].enable();
     } else if (type === "WS") {
         wizard.cards["Workshop"].enable();
+        wizard.cards["Gema"].enable();
     } else if (type === "S") {
         wizard.cards["Halls"].enable();
+        wizard.cards["Gema"].enable();
     }
 }
 
@@ -647,15 +652,14 @@ function toDict()
     event.leader = $('#leader').val();
     event.dancelevels= $('#levels').val();
     if (eventType === 'C') {
-        let class = {};
-        class.type = document.getElementById('classType').value;
-        class.openHouseDates = getOpenHouseDates();
-        class.weekday = document.getElementById('classWeekday').value;
-        class.time = document.getElementById('classTime').value;
-        class.duringClubnight = document.getElementById('classDuringClubnight').checked;
-        class.endsWithGraduation = document.getElementById('classEndsWithGraduation').checked;
-        class.studentCount = document.getElementById('classStudentCount').value;
-        event.class = class;
+        event.class = {};
+        event.class.type = document.getElementById('classType').value;
+        event.class.openHouseDates = getOpenHouseDates();
+        event.class.weekday = document.getElementById('classWeekday').value;
+        event.class.time = document.getElementById('classTime').value;
+        event.class.duringClubnight = document.getElementById('classDuringClubnight').checked;
+        event.class.endsWithGraduation = document.getElementById('classEndsWithGraduation').checked;
+        event.class.studentCount = document.getElementById('classStudentCount').value;
     } else if (eventType === 'CCN') {
         event.ccn = {};
         event.ccn.dateMoved = new Date(document.getElementById('ccnDateMoved').value);
@@ -690,7 +694,7 @@ function summary()
         + event.location.address + ', '
         + event.location.postcode + ' '
         + event.location.city + ', '
-        + event.location.country);
+        + event.location.country;
 
     for (let i = 0; i < event.dates.length; i++) {
         if (event.dates[i].length == 2) {
