@@ -1,3 +1,7 @@
+<meta charset="utf-8">
+
+[TOC]
+
 Club-Cockpit
 -------------
 
@@ -12,197 +16,276 @@ Im Club-Cockit können Club-Vertreter folgende Information verarbeiten:
 Veranstaltungen eingeben
 ------------------------
 
-Die Anmeldung eines Events geschieht wie folgt:
+Die Anmeldung eines Events erfolgt schrittweise.
 
-Schritt 1: Auswahl der Eventart
+### Schritt 1: Auswahl der Eventart
 
-    Anzeige: immer
+* Anzeige
 
-    Eingabefelder:
+    immer
 
-        Eventart
+* Eingabefelder
 
-            Auswahl der Eventart
-    
-            Optionen:
-                Special (S),
-                Special Club Night (SCN),
-                Besonderer/verschobener Clubabend (CCN),
-                Workshop,
-                Class
+    * Eventart
 
-Schritt 2: Allgemeine Angaben
-
-    Anzeige: immer
-
-    Eingabefelder:
-
-        Name der Veranstaltung (nicht bei Classes)
-
-            Freitext
-
-        Tanzplatz
-            Freitext
-
-        Postleitzahl
-            Freitext
-
-        Ort
-            Freitext
-
-        Adresse
-            Freitext
-
-        Land
-            Optionen:
-                AT
-                BE
-                CH
-                DE
-                FR
-                LI
-                NL
-                RU
-                SK
-
-Schritt 3: Datum
-
-    Anzeige: immer
-
-    Eingabefelder:
-
-        Bei S ein Datum oder ein von-bis-Datum
-        - Bei S: ein Datum oder ein von-bis-Datum
-        - Bei SCN und CCN: ein Datum
-        - Bei WS: ein oder mehrere Einzel- oder von-bis-Datumsangaben
-        - Bei C: ein von-bis-Datum
-
-Schritt 4: Tanzprogramm (immer)
-
-    Anzeige: immer
-
-    Eingabefelder:
-
-        - Tanzprogramm
-              Freitext mit Auswahl
-              Bei WS, C: nur ein Programm
-        - Leader
-              Freitext mit Auswahl
-
-Schritt 5a: Classangaben
-
-    Anzeige: bei Class
-
-    Eingabefelder:
-        Art der Class
-            Optionen:
-                Fortgeschrittene Class
-                Beginner Class
-
-    
-        Open House Termine
-            0-4 Open House Termine
-
-        Wochentag
-            Optionen
-                Mo
-                Di
-                Mi
-                Do
-                Fr
-                Sa
-                So
-                an wechselnden Tagen
-                
-        Zeit
-            Uhrzeit
-
-        Class während Clubabend
-
-        Class endet mit/ohne Graduation
-
-        Anzahl der Students
-
-Schritt 5b: CCN
-
-      Anzeige:(bei CCN
-
-      Eingabefelder:
-            Datum des Clubabends, der verschoben wird, kann auch leer sein
-
-Schritt 5c: Workshopangaben
-
-      Anzeige: bei Workshop
-
-      Eingabefelder:
-          Workshopgröße
-              Optionen:
-                    Workshop Mini
-                    Workshop Midi
-                    Workshop Maxi
-                    Workshop Super
-
-    - Art des Workshops
           Optionen:
-              WS für Tänzer,
-              WS für Leader,
-              Freizeitwochenende
 
-    - Anzahl der Teilnehmer
+          * Special (S)
+          * Special Club Night (SCN)
+          * Besonderer/verschobener Clubabend (CCN)
+          * Workshop (WS)
+          * Class (C)
 
-    - Einnahmen
+### Schritt 2: Allgemeine Angaben
 
-Schritt 5d: Hallenangaben (bei S)
+* Anzeige
 
-    Anzeige: bei Special
+    immer
 
-    Eingabefelder:
-        - Angabe einer Hallenanzahl pro Veranstaltungstag
+* Eingabefelder
+
+    * Name der Veranstaltung (nicht bei Classes)
+
+        Freitext
+
+    * Tanzplatz
+
+        Freitext
+
+    * Postleitzahl
+
+        Freitext
+
+    * Ort
+
+        Freitext
+
+    * Adresse
+
+        Freitext
+
+    * Land
+
+        Optionen:
+
+        * AT
+        * BE
+        * CH
+        * DE
+        * FR
+        * LI
+        * NL
+        * RU
+        * SK
+
+### Schritt 3: Veranstaltungsdatum
+
+* Anzeige
+
+    immer
+
+* Eingabefelder
+
+    * Bei S
+
+        ein Datum oder ein von-bis-Datum
+
+    * Bei SCN und CCN
+
+        ein Datum
+
+    * Bei WS
+
+        ein oder mehrere Einzel- oder von-bis-Datumsangaben
+
+    * Bei C
+
+        ein von-bis-Datum
+
+### Schritt 4: Tanzprogramm
+
+* Anzeige
+
+    immer
+
+* Eingabefelder
+
+    * Tanzprogramme
+
+         Freitext mit Auswahlhilfe  
+         Bei WS, C: nur ein Programm
+
+    * Leader
+          Freitext mit Auswahlhilfe
+
+### Schritt 5a: Classangaben
+
+* Anzeige
+
+    bei Class
+
+* Eingabefelder
+
+    * Art der Class
+
+        Optionen
+
+        * Fortgeschrittene Class
+        * Beginner Class
 
 
-Schritt 6: GEMA
+    * Open House Termine
 
-    Anzeige: bei S, SCN, CCN, WS
+        0-4 Open House Termine
 
-    Eingabefelder:
+    * Wochentag
 
-          GEMA-Deckung anderweitig
+        Optionen
 
-    Funktionen:
-        Anzeige der errechneten GEMA-Umlage
+        * Mo
+        * Di
+        * Mi
+        * Do
+        * Fr
+        * Sa
+        * So
+        * an wechselnden Tagen
 
-Schritt 7: Kontaktdaten
-    Anzeige: immer
+    * Zeit
 
-    Eingabefelder:
-        Ansprechpartner
-            Freitext
-        Email
-            Freitext
-        Telefon
-            Freitext
+        Uhrzeit
 
-Schritt 8: Markteing
+    * Class während Clubabend
 
-    Anzeige: immer
+        Boolean
 
-    Eingabefelder:
-        Flyer/URL
-            optional
-    
-        Veröffentlichung im Kalender
+    * Class endet mit/ohne Graduation
 
-??? - freitext Feld für Hinweise
+        Boolean
 
-Schritt 9: Zusammenfassung
+    * Anzahl der Students
 
-      Anzeige: immer
+        Ganzzahl
 
-      Eingabefelder:
-            keine
+### Schritt 5b: CCN
 
-      Funktion:
-            Anzeige der eingegebenen Daten zur Kontrolle
+* Anzeige
+
+    bei CCN
+
+* Eingabefelder
+
+    * Datum des Clubabends, der verschoben wird, kann auch leer sein
+
+### Schritt 5c: Workshopangaben
+
+* Anzeige
+
+    bei Workshop
+
+* Eingabefelder
+
+    *  Workshopgröße
+
+        Optionen
+
+          * Workshop Mini
+          * Workshop Midi
+          * Workshop Maxi
+          * Workshop Super
+
+    * Art des Workshops
+
+        Optionen
+
+          * WS für Tänzer
+          * WS für Leader
+          * Freizeitwochenende
+
+    * Anzahl der Teilnehmer
+
+        Ganzzahl
+
+    * Einnahmen
+
+        Ganzzahl
+
+### Schritt 5d: Hallenangaben (bei S)
+
+* Anzeige
+
+    bei Special
+
+* Eingabefelder
+
+    * Angabe einer Hallenanzahl pro Veranstaltungstag
+
+
+### Schritt 6: GEMA
+
+* Anzeige
+
+    bei S, SCN, CCN, WS
+
+* Eingabefelder
+
+    * GEMA-Deckung anderweitig
+
+        Boolean
+
+* Funktionen
+
+    * Anzeige der errechneten GEMA-Umlage
+
+### Schritt 7: Kontaktdaten
+
+* Anzeige
+
+    immer
+
+* Eingabefelder
+
+    * Ansprechpartner
+
+        Freitext
+
+    * Email
+
+        Freitext
+
+    * Telefon
+
+        Freitext
+
+### Schritt 8: Markteing
+
+* Anzeige
+
+    immer
+
+* Eingabefelder
+
+    * Flyer/URL
+
+        _optional_
+
+    * Veröffentlichung im Kalender
+
+        Boolean
+
+### Schritt 9: Zusammenfassung
+
+* Anzeige
+
+    immer
+
+* Eingabefelder
+
+    keine
+
+* Funktionen
+
+    * Anzeige der eingegebenen Daten zur Kontrolle
 
 
 Datenstruktur
@@ -210,6 +293,8 @@ Datenstruktur
 
 Die Übertragung eines Datensatzes in JavaScript oder JSON hat folgende Struktur:
 
+<pre>
+```
 {
     version: integer, Version der Datensatzstruktur
     type: string, [ "S", "SCN", "CCN", "WS", "C"]
@@ -258,3 +343,5 @@ Die Übertragung eines Datensatzes in JavaScript oder JSON hat folgende Struktur
         calendar: bool
     }
 }
+```
+</pre>
