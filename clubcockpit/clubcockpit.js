@@ -346,6 +346,7 @@ $(document).ready(function() {
   wizard.cards["EventType"].on("selected", disableOptionalCards);
   wizard.cards["date"].on("deselect", updateHallList);
   wizard.cards["Gema"].on("selected", updateGemaContribution);
+  wizard.cards["Summary"].on("selected", updateSummary);
   $("#gemabackingOtherwise").on("click", updateGemaContribution);
 
   disableOptionalCards();
@@ -538,14 +539,14 @@ function eventDateAddDateItem()
         document.getElementById("eventAddDateButton").classList.add("hidden");
 }
 
-function calulateGemaContribution()
+function calculateGemaContribution()
 {
     if (document.getElementById("gemabackingOtherwise").checked)
         return "0 €";
 
     let type = currentEventType();
     if (type === "C") {
-        return "unbekannt";
+        return "0 €";
     } else if (type === "CCN") {
         return "0 €";
     } else if (type === "WS") {
@@ -614,22 +615,22 @@ function openHouseAddDateItem()
 function getOpenHouseDateList()
 {
     let rc = [];
-    let items = document.getElementById("openHouseDateList");
-    for (let i = 0; i < items.length; i++) {
-        rc.push(items[i].find('input').value);
+    let items = document.getElementById("openHouseDateList").children;
+    for (let item of items) {
+        rc.push(item.getElementsByTagName('input')[0].value);
     }
     return rc;
 }
 
 function updateGemaContribution()
 {
-    let value = calulateGemaContribution();
+    let value = calculateGemaContribution();
     document.getElementById("gemaContribution").innerHTML = value;
 }
 
-function previewFlyerURL()
+function previewFlyerUrl()
 {
-    let url = document.getElementById("flyerURL").value;
+    let url = document.getElementById("flyerUrl").value;
     if (!(url.startsWith("http://") || url.startsWith("https://")))
       url = "http://" + url;
     window.open(url, 'Flyer-Vorschau', 'status=no,titlebar=no,toolbar=no');
@@ -654,7 +655,7 @@ function toDict()
     if (eventType === 'C') {
         event.class = {};
         event.class.type = document.getElementById('classType').value;
-        event.class.openHouseDates = getOpenHouseDates();
+        event.class.openHouseDates = getOpenHouseDateList();
         event.class.weekday = document.getElementById('classWeekday').value;
         event.class.time = document.getElementById('classTime').value;
         event.class.duringClubnight = document.getElementById('classDuringClubnight').checked;
@@ -679,54 +680,63 @@ function toDict()
     event.contact.person = document.getElementById('contactPerson').value;
     event.contact.email = document.getElementById('contactEmail').value;
     event.contact.phone = document.getElementById('contactPhone').value;
+    event.publish = {};
     event.publish.url = document.getElementById('flyerUrl').value;
     event.publish.calendar = document.getElementById('publishCalendar').value;
     return event;
 }
 
-function summary()
+weekdayUserString = { 'mo': "Montag", 'tu': 'Dienstag', 'we': 'Mittwoch', 'th': 'Donnerstag', 'fr': 'Freitag', 'sa': 'Samstag', 'su': 'Sonntag', 'xx': 'wechselnder Wochentag'};
+
+function updateSummary()
 {
     let event = toDict();
     let rc = '';
 
     rc += 'Event:' + event.title + ' (' + event.type + ')';
+    rc += '<br>';
     rc += event.location.name + ', '
         + event.location.address + ', '
         + event.location.postcode + ' '
         + event.location.city + ', '
         + event.location.country;
 
+    rc += "<br>Datum<br>";
     for (let i = 0; i < event.dates.length; i++) {
         if (event.dates[i].length == 2) {
-            rc += event.dates[i][0] + ' - ' + event.dates[i][1];
+            rc += event.dates[i][0].toLocaleDateString() + ' - ' + event.dates[i][1].toLocaleDateString();
         } else {
-            rc += event.dates[i][0];
+            rc += event.dates[i][0].toLocaleDateString();
         }
+        rc += "<br>";
     }
 
-    rc += event.leader.join();
-    rc += event.levels.join();
+    if (event.leader && event.leader.length > 0)
+        rc += "Leader: " + event.leader.join();
+    if (event.levels && event.levels.length > 0)
+        rc += "Levels: " + event.levels.join();
     if (event.class) {
-        rc += event.class.type;
-        rc += event.class.openHouseDates.join();
-        rc += event.class.weekday + event.class.time;
+        rc += "Class: " + event.class.type + "<br>";
+        rc += weekdayUserString[event.class.weekday] + " " + event.class.time; + " Uhr<br>";
+        rc += "Open House: " + event.class.openHouseDates.join() + "<br>";
         if (event.class.duringClubnight)
             rc += "Class während Clubabend";
         else
             rc += "Class nicht während Clubabend";
+        rc += "<br>";
         if (event.class.endsWithGraduation)
             rc += "Class endet mit Graduation";
         else
-            rc += "Class endet nicht mit Graduation";
+            rc += "Class endet <b>nicht</b> mit Graduation";
+        rc += "<br>";
     }
     if (event.ccn) {
-        rc += "Verschobener Clubabend vom " + event.ccn.dateMoved;
+        rc += "Verschobener Clubabend vom " + event.ccn.dateMoved + "<br>";
     }
     if (event.workshop) {
-        rc += event.workshop.type + " Workshop ";
-        rc += event.workshop.size;
-        rc += event.workshop.participants;
-        rc += event.workshop.revenue;
+        rc += event.workshop.type + " Workshop " + event.workshop.size;
+        rc += event.workshop.participants + " Teilnehmer" + "<br>";
+        rc += event.workshop.revenue + " € Einnahmen"+ "<br>";
     }
     if (event.special) {
         rc += "Hallen:" + event.special.halls.join();
@@ -735,10 +745,20 @@ function summary()
         rc += "GEMA Deckung anderweitig"
     else
         rc += 'GEMA Umlage: ' + calculateGemaContribution();
-    rc += event.contact.person;
-    rc += event.contact.email;
-    rc += event.contact.phone;
-    rc += event.publish.url;
-    rc += event.publish.calendar;
-    return rc;
+    rc += "<br>"
+    rc += "Kontakt: " + event.contact.person;
+    if (event.contact.email)
+        rc += ", " + event.contact.email;
+    if (event.contact.phone)
+        rc += ", " + event.contact.phone;
+    rc += "<br>";
+    if (event.publish.url)
+    rc += "Url: " + event.publish.url + "<br>";
+    if (event.publish.calendar)
+        rc += "Event wird im Kalender veröffentlicht";
+    else
+        rc += "Event wird <b>nicht</b> im Kalender veröffentlicht";
+    rc += "<br>";
+
+    document.getElementById("eventSummary").innerHTML = rc;
 }
