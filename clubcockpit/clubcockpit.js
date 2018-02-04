@@ -360,6 +360,35 @@ $(document).ready(function() {
   $('#ccnDateMoved').datepicker();
 });
 
+function validateNotEmpty(el) {
+  let content = el.val();
+  let retValue = {};
+
+  if (content.length === 0) {
+    retValue.status = false;
+    retValue.msg = "Feld darf nicht leer sein";
+  } else {
+    retValue.status = true;
+  }
+
+  return retValue;
+};
+
+function validateHallCount(el) {
+  let content = parseInt(el.val(), 10);
+  let retValue = {};
+
+  console.log(content);
+  if (isNaN(content) || content < 0|| content > 10) {
+    retValue.status = false;
+    retValue.msg = "Nummer von 0 bis 10";
+  } else {
+    retValue.status = true;
+  }
+
+  return retValue;
+};
+
 function validateEventTitle(el) {
   let name = el.val();
   let retValue = {};
@@ -461,6 +490,8 @@ function updateHallList()
                    .removeClass("hidden")
                    .appendTo("#hallItemList");
         item.find("#hallItemDate").html(new Date(beginDate.getTime() + i*86400000).toLocaleDateString());
+        item.find("input").val(1);
+        item.find("input").attr("data-validate", "validateHallCount");
     }
 }
 

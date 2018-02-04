@@ -339,6 +339,7 @@
             </div>
           </div>
 
+        <!-- Step 5a Classes -->
         <div class="wizard-card" data-cardname="Classes">
           <h3>Angaben für Classes</h3>
 
@@ -418,6 +419,7 @@
           </div>
         </div>
 
+        <!-- Step 5b CCN -->
         <div class="wizard-card" data-cardname="CCN">
           <h3>CCN</h3>
 
@@ -431,7 +433,7 @@
           </div>
         </div>
 
-
+        <!-- Step 5c Workshop -->
         <div class="wizard-card" data-cardname="Workshop">
           <h3>Angaben für Workshops</h3>
 
@@ -478,14 +480,15 @@
         </div>
       </div>
 
+        <!-- Step 5d Halls -->
         <div class="wizard-card" data-cardname="Halls">
           <h3>Angaben für Hallen</h3>
 
           <div class="wizard-input-section">
             <div class="form-group">
               <div class="row">
-                  <div class="col-sm-6">Datum</div>
-                  <div class="col-sm-6">Hallen</div>
+                  <div class="col-sm-4">Datum</div>
+                  <div class="col-sm-4">Hallen</div>
               </div>
               <div id="hallItemList">
               </div>
@@ -498,8 +501,8 @@
                 <div class="col-sm-4" id="hallItemDate">
                     Datum
                 </div>
-                <div class="col-sm-8">
-                    <input type="number" value="1" required min="0" max="10">
+                <div class="col-sm-4">
+                    <input type="number" min="0" max="10">
                 </div>
             </div>
           </div>
@@ -507,7 +510,7 @@
         </div>
       </div>
 
-        <!-- Step 5 General information -->
+        <!-- Step 6 GEMA -->
         <div class="wizard-card" data-cardname="Gema">
           <h3>GEMA</h3>
 
@@ -527,14 +530,14 @@
 
 
 
-      <!-- Step 2 General information -->
+      <!-- Step 7 Contact Information -->
       <div class="wizard-card" data-cardname="Contact">
         <h3>Kontaktdaten</h3>
         <div class="wizard-input-section">
           <div class="form-group">
             <div class="col-sm-8">
               <label for="contactPerson">Ansprechpartner</label>
-              <input type="text" class="form-control" id="contactPerson" placeholder="Name" data-serialize="1">
+              <input type="text" class="form-control" id="contactPerson" placeholder="Name" data-validate="validateNotEmpty" data-serialize="1">
             </div>
           </div>
         </div>
@@ -542,19 +545,19 @@
         <div class="form-group">
           <div class="col-sm-8">
             <label for="contactEmail">Email</label>
-            <input type="text" class="form-control" id="contactEmail" placeholder="Email-Adresse" data-serialize="1">
+            <input type="text" class="form-control" id="contactEmail" placeholder="Email-Adresse"  data-validate="validateNotEmpty" data-serialize="1">
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-sm-8">
             <label for="contactPhone">Telefon</label>
-            <input type="text" class="form-control" id="contactPhone" data-serialize="1">
+            <input type="text" class="form-control" id="contactPhone"  placeholder="+49 xxxxx" data-validate="validateNotEmpty" data-serialize="1">
           </div>
         </div>
       </div>
 
-      <!-- Step 2 General information -->
+      <!-- Step 8 Marketing -->
       <div class="wizard-card" data-cardname="Public">
         <h3>Verföffentlichungen</h3>
         <div class="wizard-input-section">
@@ -578,6 +581,7 @@
       </div>
 
 
+      <!-- Step 9 Summary -->
       <div class="wizard-card" data-cardname="Summary">
         <h3>Zusammenfassung</h3>
         <div class="wizard-input-section">

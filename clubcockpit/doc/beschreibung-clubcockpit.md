@@ -218,8 +218,7 @@ Die Anmeldung eines Events erfolgt schrittweise.
 
 * Eingabefelder
 
-    * Angabe einer Hallenanzahl pro Veranstaltungstag
-
+    * Angabe einer Hallenanzahl pro Veranstaltungstag, Prüfung auf Ganzzahl zw. 0 und 10
 
 ### Schritt 6: GEMA
 
@@ -247,17 +246,17 @@ Die Anmeldung eines Events erfolgt schrittweise.
 
     * Ansprechpartner
 
-        Freitext
+        Freitext, darf nicht leer sein
 
     * Email
 
-        Freitext
+        Freitext, darf nicht leer sein
 
     * Telefon
 
-        Freitext
+        Freitext, darf nicht leer sein
 
-### Schritt 8: Markteing
+### Schritt 8: Verföffentlichungen
 
 * Anzeige
 
