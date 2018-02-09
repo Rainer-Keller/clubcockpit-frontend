@@ -112,7 +112,7 @@ Die Anmeldung eines Events erfolgt schrittweise.
 
     * Tanzprogramme
 
-         Freitext mit Auswahlhilfe  
+         Freitext mit Auswahlhilfe
          Bei WS, C: nur ein Programm
 
     * Leader
@@ -204,11 +204,12 @@ Die Anmeldung eines Events erfolgt schrittweise.
 
     * Anzahl der Teilnehmer
 
-        Ganzzahl
+        Ganzzahl größer als 0.
 
     * Einnahmen
 
-        Ganzzahl
+        Fließkommazahl größer als 0.
+        Suffix ist €.
 
 ### Schritt 5d: Hallenangaben (bei S)
 

@@ -22,9 +22,9 @@ Events.prototype.updateView = function() {
               );
     }
 
-    for (let i in this.events) {
-      let item = this.events[i];
-      let icon;
+    for (var i in this.events) {
+      var item = this.events[i];
+      var icon;
 
       if (item.type == "class") {
         icon = '<i class="fa fa-certificate"></i>';
@@ -71,11 +71,11 @@ Events.prototype.removeEvent = function(index) {
 }
 
 Events.prototype.load = function() {
-  let self = this;
+  var self = this;
 
-  let jqx = $.getJSON("events.json", function() {})
+  var jqx = $.getJSON("events.json", function() {})
   .done(function( data ) {
-    for(let i in data) {
+    for(var i in data) {
         Events.prototype.addEvent.call(self, data[i]);
     }
     Events.prototype.updateView.call(self);
@@ -118,7 +118,7 @@ function setupDialog(title, item) {
 
 function dialogToObject()
 {
-    let rc = {};
+    var rc = {};
     rc.title = $('#eventModal #title').val();
     rc.location = $('#eventModal #location').val();
     rc.date = $('#eventModal #date').val();
@@ -132,7 +132,7 @@ function viewEventDialog(i) {
 }
 
 function validateEventDialog() {
-    let rc = true;
+    var rc = true;
     $('#eventModal #errors').empty();
 
     if (!$('#eventModal #title').val().length) {
@@ -167,7 +167,7 @@ function editEventDialog(i) {
     $('#eventModal #save').on('click', function(event) {
       if (!validateEventDialog())
           return;
-      let item = dialogToObject();
+      var item = dialogToObject();
       item.disabled = events.events[i].disabled;
       events.events[i] = item;
       events.updateView();
@@ -183,7 +183,7 @@ function createNewEvent()
     $('#eventModal #save').on('click', function(event) {
       if (!validateEventDialog())
           return;
-      let item = dialogToObject();
+      var item = dialogToObject();
       item.disabled = false;
       events.events.push(item);
       events.updateView();
@@ -193,7 +193,7 @@ function createNewEvent()
 }
 
 function removeEventDialog(i) {
-  let item = events.events[i];
+  var item = events.events[i];
   $('#removeModal #title').text(item.title);
   $('#removeModal').modal('show');
   $('#removeModal #ok').on('click', function(event) {
@@ -245,66 +245,15 @@ $(document).ready(function() {
   $(".chzn-select").select2();
   $("#leader").bind( "keyup", newValueRegister('#leaderselection'));
 
-  $('#fqdn').on('input', function() {
-    if ($(this).val().length != 0) {
-      $('#ip').val('').attr('disabled', 'disabled');
-      $('#fqdn, #ip').parents('.form-group').removeClass('has-error has-success');
-    } else {
-      $('#ip').val('').removeAttr('disabled');
-    }
-  });
-
-  let pattern = /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
-  x = 46;
-
-  $('#ip').on('input', function() {
-    if ($(this).val().length != 0) {
-      $('#fqdn').val('').attr('disabled', 'disabled');
-    } else {
-      $('#fqdn').val('').removeAttr('disabled');
-    }
-  }).keypress(function(e) {
-    if (e.which != 8 && e.which != 0 && e.which != x && (e.which < 48 || e.which > 57)) {
-      console.log(e.which);
-      return false;
-    }
-  }).keyup(function() {
-    let $this = $(this);
-    if (!pattern.test($this.val())) {
-      //$('#validate_ip').text('Not Valid IP');
-      console.log('Not Valid IP');
-      $this.parents('.form-group').removeClass('has-error has-success').addClass('has-error');
-      while ($this.val().indexOf("..") !== -1) {
-        $this.val($this.val().replace('..', '.'));
-      }
-      x = 46;
-    } else {
-      x = 0;
-      let lastChar = $this.val().substr($this.val().length - 1);
-      if (lastChar == '.') {
-        $this.val($this.val().slice(0, -1));
-      }
-      let ip = $this.val().split('.');
-      if (ip.length == 4) {
-        //$('#validate_ip').text('Valid IP');
-        console.log('Valid IP');
-        $this.parents('.form-group').removeClass('has-error').addClass('has-success');
-      }
-    }
-  });
-
   wizard.on('closed', function() {
     wizard.reset();
   });
 
   wizard.on("reset", function() {
-    wizard.modal.find(':input').val('').removeAttr('disabled');
-    wizard.modal.find('.form-group').removeClass('has-error').removeClass('has-succes');
-    wizard.modal.find('#fqdn').data('is-valid', 0).data('lookup', 0);
   });
 
   wizard.on("submit", function(wizard) {
-    let submit = {
+    var submit = {
       "hostname": $("#new-server-fqdn").val()
     };
 
@@ -320,22 +269,6 @@ $(document).ready(function() {
       wizard.showSubmitCard("success");
       wizard.updateProgressBar(0);
     }, 2000);
-  });
-
-  wizard.el.find(".wizard-success .im-done").click(function() {
-    wizard.hide();
-    setTimeout(function() {
-      wizard.reset();
-    }, 250);
-
-  });
-
-  wizard.el.find(".wizard-success .create-another-server").click(function() {
-    wizard.reset();
-  });
-
-  $(".wizard-group-list").click(function() {
-    alert("Disabled for demo.");
   });
 
   $('#buttonNew').click(function(e) {
@@ -361,8 +294,8 @@ $(document).ready(function() {
 });
 
 function validateNotEmpty(el) {
-  let content = el.val();
-  let retValue = {};
+  var content = el.val();
+  var retValue = {};
 
   if (content.length === 0) {
     retValue.status = false;
@@ -374,14 +307,99 @@ function validateNotEmpty(el) {
   return retValue;
 };
 
-function validateHallCount(el) {
-  let content = parseInt(el.val(), 10);
-  let retValue = {};
+function validateComboboxSelected(el) {
+    var content = el.val();
+    var retValue = {};
 
-  console.log(content);
+    if (!content) {
+        retValue.status = false;
+        retValue.msg = "Bitte auswählen";
+    } else {
+        retValue.status = true;
+    }
+    return retValue;
+}
+
+function validateFloatGreaterOrEqualZero(el) {
+  var content = parseFloat(el.val());
+  var retValue = {};
+
+  if (isNaN(content) || content < 0) {
+    retValue.status = false;
+    retValue.msg = "Ungültige Zahl";
+  } else {
+    retValue.status = true;
+  }
+
+  return retValue;
+};
+
+function validateIntegerGreaterOrEqualZero(el) {
+  var content = parseInt(el.val(), 10);
+  var retValue = {};
+
+  if (isNaN(content) || content < 0) {
+    retValue.status = false;
+    retValue.msg = "Ungültige Zahl";
+  } else {
+    retValue.status = true;
+  }
+
+  return retValue;
+};
+
+function validateDate(el) {
+  var content = Date.parse(el.val());
+  var retValue = {};
+
+  if (isNaN(content)) {
+    retValue.status = false;
+    retValue.msg = "Ungültiges Datum";
+  } else {
+    retValue.status = true;
+  }
+
+  return retValue;
+};
+
+function validateDateOrEmpty(el) {
+  var content = el.val();
+  var retValue = {};
+
+  if (content.length === 0) {
+      retValue.status = true;
+  } else {
+      retValue = validateDate(el);
+  }
+
+  return retValue;
+};
+
+function validateDebug(el) {
+  console.log("break");
+}
+
+function validateTime(el) {
+  var content = el.val();
+  var retValue = {};
+
+  if (!content.match("^[0-2]\\d:[0-5]\\d$")) {
+    retValue.status = false;
+    retValue.msg = "Ungültige Uhrzeit";
+  } else {
+    retValue.status = true;
+  }
+
+  return retValue;
+};
+
+function validateHallCount(el) {
+  var content = parseInt(el.val(), 10);
+  var retValue = {};
+
   if (isNaN(content) || content < 0|| content > 10) {
     retValue.status = false;
-    retValue.msg = "Nummer von 0 bis 10";
+    retValue.msg = "Zahl von 0 bis 10";
   } else {
     retValue.status = true;
   }
@@ -390,8 +408,8 @@ function validateHallCount(el) {
 };
 
 function validateEventTitle(el) {
-  let name = el.val();
-  let retValue = {};
+  var name = el.val();
+  var retValue = {};
 
   if (name == "") {
     retValue.status = false;
@@ -415,7 +433,7 @@ function enableOptionalCards()
 {
     disableOptionalCards(wizard);
 
-    let type = currentEventType();
+    var type = currentEventType();
     if (type === "C") {
         wizard.cards["Classes"].enable();
         wizard.cards["Gema"].disable(true /* hide */);
@@ -433,11 +451,11 @@ function enableOptionalCards()
 
 function getDates()
 {
-    let rc = [];
-    let i = 0;
+    var rc = [];
+    var i = 0;
 
     do {
-        let elem = $('#eventDateItem' + i + ' input');
+        var elem = $('#eventDateItem' + i + ' input');
         if (elem.length === 0)
             break;
 
@@ -460,7 +478,7 @@ function updateDateListOptions()
 {
     $("#eventDateList").empty(); // clear all existing dates
 
-    let button = document.getElementById("eventAddDateButton");
+    var button = document.getElementById("eventAddDateButton");
 
     if (currentEventType() === "WS")
         button.classList.remove("hidden");
@@ -477,15 +495,15 @@ function updateHallList()
 
     $("#hallItemList").empty(); // clear all
 
-    let dates = getDates();
-    let beginDate = dates[0][0];
-    let endDate = dates[0][1];
+    var dates = getDates();
+    var beginDate = dates[0][0];
+    var endDate = dates[0][1];
     if (!endDate)
         endDate = new Date(beginDate);
-    let days = 1 + Math.round((endDate-beginDate)/(1000*60*60*24));
+    var days = 1 + Math.round((endDate-beginDate)/(1000*60*60*24));
 
-    for (let i = 0; i < days; i++) {
-        let item = $("#hallItemTemplate").clone()
+    for (var i = 0; i < days; i++) {
+        var item = $("#hallItemTemplate").clone()
                    .attr("id", "hallItem" + i)
                    .removeClass("hidden")
                    .appendTo("#hallItemList");
@@ -497,8 +515,8 @@ function updateHallList()
 
 function getHalls()
 {
-    let rc = [];
-    let i = 0;
+    var rc = [];
+    var i = 0;
 
     do {
         var elem = $('#hallItem' + i + ' input');
@@ -512,13 +530,13 @@ function getHalls()
 
 function currentEventType()
 {
-    let e = document.getElementById("eventType");
+    var e = document.getElementById("eventType");
     return e.value;
 }
 
 function eventDateRemoveDateItem(index)
 {
-    let count = document.getElementById("eventDateList").childElementCount;
+    var count = document.getElementById("eventDateList").childElementCount;
     if (count === 1)
         return;
 
@@ -530,11 +548,11 @@ function eventDateRemoveDateItem(index)
 
 function eventDateAddDateItem()
 {
-    let count = document.getElementById("eventDateList").childElementCount;
+    var count = document.getElementById("eventDateList").childElementCount;
     if (count > 6)
         return;
 
-    let item = $("#eventDateItemTemplate").clone()
+    var item = $("#eventDateItemTemplate").clone()
                .attr("id", "eventDateItem" + count)
                .removeClass("hidden")
                .appendTo("#eventDateList");
@@ -547,10 +565,10 @@ function eventDateAddDateItem()
           item.find('#secondDate').addClass('hidden');
     });
 
-    item.find('[type="date"]').datepicker();
+    item.find('.datepicker').datepicker();
     item.find('#secondDate').addClass("hidden");
 
-    let eventType = currentEventType();
+    var eventType = currentEventType();
     if (eventType === "S") {
         item.find('button').addClass('hidden');
     } else if (eventType === "CCN" || eventType === "SCN") {
@@ -575,13 +593,13 @@ function calculateGemaContribution()
     if (document.getElementById("gemabackingOtherwise").checked)
         return "0 €";
 
-    let type = currentEventType();
+    var type = currentEventType();
     if (type === "C") {
         return "0 €";
     } else if (type === "CCN") {
         return "0 €";
     } else if (type === "WS") {
-        let size = document.getElementById("workshopSize").value;
+        var size = document.getElementById("workshopSize").value;
         if (size === "mini") {
             return "8 €";
         } else if (size == "midi") {
@@ -596,17 +614,17 @@ function calculateGemaContribution()
     } else if (type === "SCN") {
         return "17 €";
     } else if (type === "S") {
-        let halls = getHalls();
-        let firstHalls = 0;
-        let totalHalls = 0;
+        var halls = getHalls();
+        var firstHalls = 0;
+        var totalHalls = 0;
 
-        for (let i = 0; i < halls.length; i++) {
+        for (var i = 0; i < halls.length; i++) {
             if (halls[i] > 0)
                 firstHalls++;
             totalHalls += halls[i];
         }
 
-        let additionalHalls = totalHalls - firstHalls;
+        var additionalHalls = totalHalls - firstHalls;
         if (additionalHalls > 5) // maximum of 5 additional halls
             additionalHalls = 5;
         return firstHalls * 80 + additionalHalls * 50 + " €";
@@ -617,7 +635,7 @@ function calculateGemaContribution()
 
 function openHouseRemoveDateItem(index)
 {
-    let count = document.getElementById("openHouseDateList").childElementCount;
+    var count = document.getElementById("openHouseDateList").childElementCount;
 
     $("#openHouseDateItem" + index).remove();
 
@@ -627,17 +645,18 @@ function openHouseRemoveDateItem(index)
 
 function openHouseAddDateItem()
 {
-    let count = document.getElementById("openHouseDateList").childElementCount;
+    var count = document.getElementById("openHouseDateList").childElementCount;
     if (count >= 4)
         return;
 
-    let item = $("#openHouseDateItemTemplate").clone()
+    var item = $("#openHouseDateItemTemplate").clone()
                .attr("id", "openHouseDateItem" + count)
                .removeClass("hidden")
                .appendTo("#openHouseDateList");
 
     item.find('button').on('click', function() { openHouseRemoveDateItem(count); });
-    item.find('[type="date"]').datepicker();
+    item.find('.datepicker').datepicker();
+    item.find('.datepicker').attr("data-validate", "validateDate");
 
     if (count+1 === 4)
         document.getElementById("openHouseAddDateButton").classList.add("hidden");
@@ -645,9 +664,9 @@ function openHouseAddDateItem()
 
 function getOpenHouseDateList()
 {
-    let rc = [];
-    let items = document.getElementById("openHouseDateList").children;
-    for (let item of items) {
+    var rc = [];
+    var items = document.getElementById("openHouseDateList").children;
+    for (var item of items) {
         rc.push(item.getElementsByTagName('input')[0].value);
     }
     return rc;
@@ -655,13 +674,13 @@ function getOpenHouseDateList()
 
 function updateGemaContribution()
 {
-    let value = calculateGemaContribution();
+    var value = calculateGemaContribution();
     document.getElementById("gemaContribution").innerHTML = value;
 }
 
 function previewFlyerUrl()
 {
-    let url = document.getElementById("flyerUrl").value;
+    var url = document.getElementById("flyerUrl").value;
     if (!(url.startsWith("http://") || url.startsWith("https://")))
       url = "http://" + url;
     window.open(url, 'Flyer-Vorschau', 'status=no,titlebar=no,toolbar=no');
@@ -669,11 +688,11 @@ function previewFlyerUrl()
 
 function toDict()
 {
-    let event = {};
-    let eventType = currentEventType();
+    var event = {};
+    var eventType = currentEventType();
     event.type = eventType;
     event.title = document.getElementById('eventTitle').value;
-    let location = {};
+    var location = {};
     location.name = document.getElementById('dancelocationName').value;
     location.address = document.getElementById('dancelocationAddress').value;
     location.postcode = document.getElementById('dancelocationPostcode').value;
@@ -696,7 +715,7 @@ function toDict()
         event.ccn = {};
         event.ccn.dateMoved = new Date(document.getElementById('ccnDateMoved').value);
     } else if (eventType === 'WS') {
-        let ws = {};
+        var ws = {};
         ws.size = document.getElementById('workshopSize').value;
         ws.type = document.getElementById('workshopType').value;
         ws.participants = document.getElementById('workshopParticipants').value;
@@ -721,8 +740,8 @@ weekdayUserString = { 'mo': "Montag", 'tu': 'Dienstag', 'we': 'Mittwoch', 'th': 
 
 function updateSummary()
 {
-    let event = toDict();
-    let rc = '';
+    var event = toDict();
+    var rc = '';
 
     rc += 'Event:' + event.title + ' (' + event.type + ')';
     rc += '<br>';
@@ -733,7 +752,7 @@ function updateSummary()
         + event.location.country;
 
     rc += "<br>Datum<br>";
-    for (let i = 0; i < event.dates.length; i++) {
+    for (var i = 0; i < event.dates.length; i++) {
         if (event.dates[i].length == 2) {
             rc += event.dates[i][0].toLocaleDateString() + ' - ' + event.dates[i][1].toLocaleDateString();
         } else {
