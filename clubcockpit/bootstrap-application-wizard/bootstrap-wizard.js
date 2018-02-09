@@ -769,7 +769,7 @@
                 while (true) {
                     next = getNext(current);
                     if (next) {
-                        this.log("looking at card", next.index);
+                        this.log("looking at card", next.index, next.name);
                         if (next.isDisabled()) {
                             this.log("card " + next.index + " is disabled/locked, continuing");
                             current = next;
