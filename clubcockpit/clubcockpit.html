@@ -187,7 +187,7 @@
           <p>Auswahl des Event-Typs</p>
           <div class="form-group">
             <label for="eventType">Event-Typ</label>
-            <select class="form-control" id="eventType" data-serialize="1">
+            <select class="form-control" id="eventType" data-serialize="1" data-validate="validateComboboxSelected">
               <option disabled selected value style="display:none">Bitte auswählen</option>
               <option value="S">Special</option>
               <option value="SCN">Special Club Night</option>
@@ -214,35 +214,35 @@
           <div class="form-group">
             <div class="col-sm-8">
               <label for="title">Tanzplatz</label>
-              <input type="text" class="form-control" id="dancelocationName" placeholder="Name des Tanzplatzes" data-serialize="1">
+              <input type="text" class="form-control" id="dancelocationName" placeholder="Name des Tanzplatzes" data-serialize="1" data-validate="validateNotEmtpy">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-8">
               <label for="title">Postleitzahl</label>
-              <input type="text" class="form-control" id="dancelocationPostcode" data-serialize="1">
+              <input type="text" class="form-control" id="dancelocationPostcode" data-serialize="1" data-validate="validateNotEmpty">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-8">
               <label for="title">Ort</label>
-              <input type="text" class="form-control" id="dancelocationCity" data-serialize="1">
+              <input type="text" class="form-control" id="dancelocationCity" data-serialize="1" data-validate="validateNotEmpty">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-8">
               <label for="title">Adresse</label>
-              <input type="text" class="form-control" placeholder="Straße und Hausnummer" id="dancelocationAddress" data-serialize="1">
+              <input type="text" class="form-control" placeholder="Straße und Hausnummer" id="dancelocationAddress" data-serialize="1" data-validate="validateNotEmpty">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-8">
               <label for="dancelocationCountry">Land</label>
-              <select class="form-control" id="dancelocationCountry" data-serialize="1">
+              <select class="form-control" id="dancelocationCountry" data-serialize="1" data-validate="validateComboboxSelected">
                 <option disabled selected value style="display:none">Bitte auswählen</option>
                 <option>AT</option>
                 <option>BE</option>
@@ -271,7 +271,7 @@
 
           <!-- vvv Template for date item vvv -->
           <div id="eventDateItemTemplate" class="hidden">
-            <input type="text" class="datepicker" placeholder="Auswählen"><div id="secondDate" style="display:inline"> - <input type="text" class="datepicker" placeholder="Auswählen"></div>
+            <input type="text" readonly class="datepicker" placeholder="Auswählen"><div id="secondDate" style="display:inline"> - <input readonly type="text" class="datepicker" placeholder="Auswählen"></div>
             <button type="button" class="btn btn-primary"><span class="fa fa-trash"></span></button>
             <div class="checkbox">
               <label><input type="checkbox" value="">mehrere Tage</label>
@@ -289,7 +289,7 @@
             <div class="form-group" id="leader">
               <div class="col-sm-8">
                 <label for="leader">Leader</label>
-                <div> <!-- data-validate="validateLeader">  this <div> is needed because popover does not work with select2 -->
+                <div data-validate="validateLeader"> <!-- this <div> is needed because popover does not work with select2 -->
                   <select id="leaderselection" name="leader" data-placeholder="Leader" style="width:350px;" class="chzn-select form-control" multiple>
                   </select>
                 </div>
@@ -303,8 +303,8 @@
             <div class="form-group">
               <div class="col-sm-8">
                 <label for="levels">Tanzprogramm</label>
-                <div> <!-- data-validate="validateDancelevel">  this <div> is needed because popover does not work with select2 -->
-                  <select name="levels" data-placeholder="Tanzprogramme" style="width:350px;" class="chzn-select form-control" multiple>
+                <div data-validate="validateDanceLevel"> <!--  this <div> is needed because popover does not work with select2 -->
+                  <select readonly id="levelsselection" name="levels" data-placeholder="Tanzprogramme" style="width:350px;" class="chzn-select form-control" multiple>
                     <option value=""></option>
                     <optgroup label="Square Dance">
                       <option value="sq.ms">B</option>

@@ -291,6 +291,7 @@ $(document).ready(function() {
   });
 
   $('#ccnDateMoved').datepicker();
+  fetchCaller();
 });
 
 function validateNotEmpty(el) {
@@ -392,6 +393,37 @@ function validateTime(el) {
 
   return retValue;
 };
+
+function validateLeader() {
+    var levels = $('#leaderselection').val();
+    var retValue = {}
+
+    if (!levels || levels.length == 0) {
+        retValue.status = false;
+        retValue.msg = "Bitte die Leader auswählen";
+    } else {
+        retValue.status = true;
+    }
+
+    return retValue;
+}
+
+function validateDanceLevel() {
+    var levels = $('#levelsselection').val();
+    var retValue = {}
+
+    if (!levels || levels.length == 0) {
+        retValue.status = false;
+        retValue.msg = "Bitte die Tanzlevel auswählen";
+    } else if ((currentEventType() === "WS" || currentEventType() === "C") && levels.length > 1) {
+        retValue.msg = "Bitte maximal ein Programm angeben";
+        retValue.status = false;
+    } else {
+        retValue.status = true;
+    }
+
+    return retValue;
+}
 
 function validateHallCount(el) {
   var content = parseInt(el.val(), 10);
@@ -567,6 +599,7 @@ function eventDateAddDateItem()
 
     item.find('.datepicker').datepicker();
     item.find('#secondDate').addClass("hidden");
+    item.attr("data-validate", "validateEventDate");
 
     var eventType = currentEventType();
     if (eventType === "S") {
@@ -812,3 +845,66 @@ function updateSummary()
 
     document.getElementById("eventSummary").innerHTML = rc;
 }
+
+function fetchCaller() {
+    var query;
+    var jqxhr = new XMLHttpRequest();
+    jqxhr.open("GET", "http://squaredance.net/api/events/caller", true);
+    jqxhr.onreadystatechange = function() {
+        if (jqxhr.readyState != 4)
+            return;
+        if (jqxhr.status != 200) {
+            console.log("error");
+            return;
+        }
+        var caller = JSON.parse(jqxhr.responseText);
+        caller.forEach(function(item) {
+            $("#leaderselection").append('<option value="' + item + '">' + item + '</option>');
+        })
+    };
+  jqxhr.send();
+}
+
+function validateEventDate(el) {
+    var retValue = {};
+    retValue.status = true;
+
+    var elem = el[0].getElementsByTagName('input');
+    if (elem.length !== 3) {
+        retValue.msg = "Invalid date elements found";
+        retValue.status = false;
+        return retValue;
+    }
+
+    var checkBoth = elem[2].checked;
+    var beginDate = new Date(elem[0].value);
+    var endDate = new Date(elem[1].value);
+
+    if (!beginDate || beginDate === '') {
+        retValue.status = false;
+        retValue.msg = "Bitte ein Datum angeben";
+    } else if (isNaN(Date.parse(beginDate))) {
+        retValue.status = false;
+        retValue.msg = "Bitte ein gültiges Datum angeben";
+    }
+
+    if (checkBoth) {
+        if (!endDate || endDate === '') {
+            retValue.status = false;
+            retValue.msg = "Bitte ein Enddatum angeben";
+        } else if (isNaN(Date.parse(endDate))) {
+            retValue.status = false;
+            retValue.msg = "Bitte ein gültiges Enddatum angeben";
+        } else if (beginDate >= endDate) {
+            retValue.status = false;
+            retValue.msg = "Enddatum muss nach dem Startdatum liegen";
+        } else if(endDate - beginDate > 2332800000) { // 28 days in future
+          retValue.status = false;
+          retValue.msg = 'Event darf nicht Länger als 28 Tage sein';
+        }
+    }
+
+    return retValue;
+};
+
+

@@ -46,23 +46,23 @@ Die Anmeldung eines Events erfolgt schrittweise.
 
     * Name der Veranstaltung (nicht bei Classes)
 
-        Freitext
+        Freitext, nicht leer
 
     * Tanzplatz
 
-        Freitext
+        Freitext, nicht leer
 
     * Postleitzahl
 
-        Freitext
+        Freitext, nicht leer
 
     * Ort
 
-        Freitext
+        Freitext, nicht leer
 
     * Adresse
 
-        Freitext
+        Freitext, nicht leer
 
     * Land
 
@@ -114,6 +114,7 @@ Die Anmeldung eines Events erfolgt schrittweise.
 
          Freitext mit Auswahlhilfe
          Bei WS, C: nur ein Programm
+         Mindestens ein Programm
 
     * Leader
           Freitext mit Auswahlhilfe
