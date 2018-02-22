@@ -176,20 +176,26 @@ function editEventDialog(i) {
     })
 }
 
-function createNewEvent()
+function initializeDialog()
 {
-    setupDialog("Event anlegen", { 'disabled': false});
+    wizard.cards["EventType"].on("deselect", function() { enableOptionalCards(); updateDateListOptions();});
+    wizard.cards["EventType"].on("reset", disableOptionalCards);
+    wizard.cards["EventType"].on("selected", disableOptionalCards);
+    wizard.cards["date"].on("deselect", updateHallList);
+    wizard.cards["Gema"].on("selected", updateGemaContribution);
+    wizard.cards["Summary"].on("selected", updateSummary);
+    $("#gemabackingOtherwise").on("click", updateGemaContribution);
+    $("#eventAddDateButton").on("click", eventDateAddDateItem);
+    $("#openHouseAddDateButton").on("click", openHouseAddDateItem);
+    disableOptionalCards();
+}
 
-    $('#eventModal #save').on('click', function(event) {
-      if (!validateEventDialog())
-          return;
-      var item = dialogToObject();
-      item.disabled = false;
-      events.events.push(item);
-      events.updateView();
-      $('#eventModal #save').off('click');
-      $('#eventModal').modal('hide');
-    })
+function createNewEvent(e)
+{
+    if (e)
+        e.preventDefault();
+
+    wizard.show();
 }
 
 function removeEventDialog(i) {
@@ -268,30 +274,19 @@ $(document).ready(function() {
       wizard._submitting = false;
       wizard.showSubmitCard("success");
       wizard.updateProgressBar(0);
+      wizard.hide();
+      setTimeout(function() {
+          wizard.reset();
+      }, 250);
+
     }, 2000);
   });
 
-  $('#buttonNew').click(function(e) {
-    e.preventDefault();
-
-  wizard.cards["EventType"].on("deselect", function() { enableOptionalCards(); updateDateListOptions();});
-  wizard.cards["EventType"].on("reset", disableOptionalCards);
-  wizard.cards["EventType"].on("selected", disableOptionalCards);
-  wizard.cards["date"].on("deselect", updateHallList);
-  wizard.cards["Gema"].on("selected", updateGemaContribution);
-  wizard.cards["Summary"].on("selected", updateSummary);
-  $("#gemabackingOtherwise").on("click", updateGemaContribution);
-
-  disableOptionalCards();
-  wizard.show();
-
-  $("#eventAddDateButton").on("click", eventDateAddDateItem);
-  $("#openHouseAddDateButton").on("click", openHouseAddDateItem);
-
-  });
-
+  $('#buttonNew').click(createNewEvent);
   $('#ccnDateMoved').datepicker();
   fetchCaller();
+  initializeDialog();
+  createNewEvent();
 });
 
 function validateNotEmpty(el) {
@@ -817,7 +812,7 @@ function updateSummary()
         rc += "Verschobener Clubabend vom " + event.ccn.dateMoved + "<br>";
     }
     if (event.workshop) {
-        rc += event.workshop.type + " Workshop " + event.workshop.size;
+        rc += event.workshop.type + " Workshop " + event.workshop.size + "<br>";
         rc += event.workshop.participants + " Teilnehmer" + "<br>";
         rc += event.workshop.revenue + " € Einnahmen"+ "<br>";
     }
