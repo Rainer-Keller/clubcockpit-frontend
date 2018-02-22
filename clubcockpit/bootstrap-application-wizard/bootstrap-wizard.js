@@ -569,6 +569,9 @@
 
             // Reposition
             this.dimensions.offset = ($(window).height() - this.dialog.height()) / 2;
+            if (this.dimensions.offset < 0)
+                this.dimensions.offset = 0;
+
             this.dialog.css({
                 'margin-top': this.dimensions.offset + 'px',
                 'padding-top': 0
