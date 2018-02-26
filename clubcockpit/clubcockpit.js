@@ -718,6 +718,7 @@ function toDict()
 {
     var event = {};
     var eventType = currentEventType();
+    event.version = 1;
     event.type = eventType;
     event.title = document.getElementById('eventTitle').value;
     var location = {};
@@ -729,7 +730,7 @@ function toDict()
     event.location = location;
     event.dates = getDates();
     event.leader = $('#leader').val();
-    event.dancelevels= $('#levels').val();
+    event.dancelevels = $('#levels').val();
     if (eventType === 'C') {
         event.class = {};
         event.class.type = document.getElementById('classType').value;
@@ -760,7 +761,7 @@ function toDict()
     event.contact.phone = document.getElementById('contactPhone').value;
     event.publish = {};
     event.publish.url = document.getElementById('flyerUrl').value;
-    event.publish.calendar = document.getElementById('publishCalendar').value;
+    event.publish.calendar = document.getElementById('publishCalendar').checked;
     return event;
 }
 
