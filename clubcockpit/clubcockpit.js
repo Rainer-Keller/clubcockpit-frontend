@@ -28,9 +28,9 @@ Events.prototype.updateView = function() {
 
       if (item.type == "class") {
         icon = '<i class="fa fa-certificate"></i>';
-      } else if (item.type == "workshop") {
+      } else if (item.type == "WS") {
         icon = '<i class="fa fa-graduation-cap"></i>';
-      } else if (item.type == "event") {
+      } else if (item.type == "S") {
         icon = '<i class="fa fa-bolt"></i>';
       }
 
@@ -39,12 +39,13 @@ Events.prototype.updateView = function() {
       $("#events div:first").append('\
           <div class="list-group-item"> \
             <b>' + icon + item.title + '</b>' +
-            '<br><span class="fa fa-calendar"></span> ' + item.date +
-            '<br><span class="fa fa-map-marker"></span> ' + item.location +
-            '<br><a href="#">MFL Formular</a>' +
+            '<br><span class="fa fa-calendar"></span> ' + item.dates +
+            '<br><span class="fa fa-map-marker"></span> ' + item.location.postcode + ' ' + item.location.city +
+            /* '<br><a href="#">MFL Formular</a>' + */
             '<div class="btn-group pull-right">' +
 
             (!item.disabled ? '\
+				<button type="button" class="btn btn-sm btn-info" onclick="showEventDialog(' + i + ')"><i class="fa fa-list" aria-hidden="true"></i></button>\
                 <button type="button" class="btn btn-sm btn-primary" onclick="editEventDialog(' + i + ')"><i class="fa fa-pencil" aria-hidden="true"></i></button>\
                 <button type="button" class="btn btn-sm btn-danger" onclick="removeEventDialog(' + i + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>\
                 '
@@ -73,7 +74,8 @@ Events.prototype.removeEvent = function(index) {
 Events.prototype.load = function() {
   var self = this;
 
-  var jqx = $.getJSON("events.json", function() {})
+  // var jqx = $.getJSON("events.json", function() {})
+  var jqx = $.getJSON("https://eaasdc.eu/eu/json_events.php?eventid=30", function() {})
   .done(function( data ) {
     for(var i in data) {
         Events.prototype.addEvent.call(self, data[i]);
@@ -90,10 +92,10 @@ Events.prototype.load = function() {
 function setupDialog(title, item) {
   $('#eventModal .modal-title').text(title);
   $('#eventModal #title').val(item.title);
-  $('#eventModal #location').val(item.location);
-  $('#eventModal #date').val(item.date);
+  $('#eventModal #location').val(item.location.name + ' --- ' + item.location.country + ' ' + item.location.postcode + ' ' + item.location.city);
+  $('#eventModal #date').val(item.dates);
   $('#eventModal #time').val(item.time);
-  $('#eventModal #description').val(item.description);
+  $('#eventModal #description').val(item.club.clubname);
 
   $('#eventModal #title').attr('disabled', item.disabled);
   $('#eventModal #location').attr('disabled', item.disabled);
@@ -121,6 +123,17 @@ function dialogToObject()
     var rc = {};
     rc.title = $('#eventModal #title').val();
     rc.location = $('#eventModal #location').val();
+    rc.date = $('#eventModal #date').val();
+    rc.time = $('#eventModal #time').val();
+    rc.description = $('#eventModal #description').val();
+    return rc;
+}
+
+function dialog2ToObject()
+{
+    var rc = {};
+    rc.title = $('#eventModal #title').val();
+    rc.location = $('#eventModal #location.#city').val();
     rc.date = $('#eventModal #date').val();
     rc.time = $('#eventModal #time').val();
     rc.description = $('#eventModal #description').val();
@@ -168,6 +181,21 @@ function editEventDialog(i) {
       if (!validateEventDialog())
           return;
       var item = dialogToObject();
+      item.disabled = events.events[i].disabled;
+      events.events[i] = item;
+      events.updateView();
+      $('#eventModal #save').off('click');
+      $('#eventModal').modal('hide');
+    })
+}
+
+function showEventDialog(i) {
+    setupDialog("Event anzeigen", events.events[i]);
+
+    $('#eventModal #save').on('click', function(event) {
+      if (!validateEventDialog())
+          return;
+      var item = dialog2ToObject();
       item.disabled = events.events[i].disabled;
       events.events[i] = item;
       events.updateView();
