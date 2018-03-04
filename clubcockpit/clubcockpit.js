@@ -601,7 +601,8 @@ function eventDateRemoveDateItem(index)
         document.getElementById("eventAddDateButton").classList.remove("hidden");
 }
 
-function eventDateAddDateItem()
+// first and second date parameters are optional
+function eventDateAddDateItem(firstDate, secondDate)
 {
     var count = document.getElementById("eventDateList").childElementCount;
     if (count > 6)
@@ -638,6 +639,16 @@ function eventDateAddDateItem()
         item.find('.checkbox').addClass('hidden');
         item.find('#secondDate').removeClass('hidden');
         item.find('button').addClass('hidden');
+    }
+
+    if (firstDate) { // set date, if any
+        $('#eventDateItem' + i + ' input')[0].value = firstDate;
+        $('#eventDateItem' + i + ' input')[2].checked = false;
+    }
+    if (secondDate) { // set date, if any
+        $('#eventDateItem' + i + ' input')[1].value = secondDate;
+        $('#eventDateItem' + i + ' input')[1].removeClass('hidden');
+        $('#eventDateItem' + i + ' input')[2].value = true;
     }
 
     if (count === 6)
@@ -699,7 +710,8 @@ function openHouseRemoveDateItem(index)
         document.getElementById("openHouseAddDateButton").classList.remove("hidden");
 }
 
-function openHouseAddDateItem()
+// date is optional
+function openHouseAddDateItem(date)
 {
     var count = document.getElementById("openHouseDateList").childElementCount;
     if (count >= 4)
@@ -713,6 +725,8 @@ function openHouseAddDateItem()
     item.find('button').on('click', function() { openHouseRemoveDateItem(count); });
     item.find('.datepicker').datepicker();
     item.find('.datepicker').attr("data-validate", "validateDate");
+    if (date)
+        item.find('.datepicker').value = date;
 
     if (count+1 === 4)
         document.getElementById("openHouseAddDateButton").classList.add("hidden");
@@ -740,6 +754,74 @@ function previewFlyerUrl()
     if (!(url.startsWith("http://") || url.startsWith("https://")))
       url = "http://" + url;
     window.open(url, 'Flyer-Vorschau', 'status=no,titlebar=no,toolbar=no');
+}
+
+function fromDict(data)
+{
+    if (data.version !== 1) {
+        console.log("Invalid version");
+        return;
+    }
+
+    document.getElementById('eventType').value = data.type;
+    document.getElementById('eventTitle').value = data.title;
+    if (data.location) {
+        document.getElementById('dancelocationName').value = data.location.name;
+        document.getElementById('dancelocationAddress').value = data.location.address;
+        document.getElementById('dancelocationPostcode').value = data.location.postcode;
+        document.getElementById('dancelocationCity').value = data.location.city;
+        document.getElementById('dancelocationCountry').value = data.location.country;
+    }
+    // clear dates and add new ones
+    var dateCount = document.getElementById('eventDateList').childElementCount;
+    for (var i = 0; i < dateCount; i++)
+        document.getElementById('eventDateItem' + i).remove();
+    for (var i = 0; i < dates.length; i++)
+        eventDateAddDateItem(date[i][0], date[i][1]);
+
+    $('#leader').val(null).trigger('change');
+    $('#leader').val(data.leader).trigger('change');
+
+    $('#dancelevels').val(null).trigger('change');
+    $('#dancelevels').val(data.dancelevels).trigger('change');
+
+    if (data.class) {
+        document.getElementById('classType').value = data.class.type;
+        document.getElementById('classWeekday').value = data.class.weekday;
+        document.getElementById('classTime').value = data.class.time;
+        document.getElementById('classDuringClubnight').checked = data.class.duringClubnight;
+        document.getElementById('classEndsWithGraduation').checked = data.class.endsWithGraduation;
+        document.getElementById('classStudentCount').value = data.class.studentCount;
+
+        // clear dates and add new ones
+        var dateCount = document.getElementById('openHouseDateList').childElementCount;
+        for (var i = 0; i < dateCount; i++)
+            document.getElementById('openHouseDateItem' + i).remove();
+        for (var i = 0; i < data.class.openHouseDates.length; i++)
+            openHouseAddDateItem(data.class.openHouseDates[i]);
+    }
+    if (data.ccn) {
+        document.getElementById('ccnDateMoved').value = data.ccn.dateMoved;
+    }
+    if (data.ws) {
+        document.getElementById('workshopSize').value = data.ws.size;
+        document.getElementById('workshopType').value = data.ws.type;
+        document.getElementById('workshopParticipants').value = data.ws.participants;
+        document.getElementById('workshopRevenue').value = data.ws.revenue;
+    }
+    if (data.special) {
+        updateHallList(); // When calling this function the dates have to be set
+        for (var i; i < data.special.halls.length; i++) {
+            document.getElementById('hallItem' + i).value = data.special.halls[i];
+        }
+    }
+
+    document.getElementById('gemabackingOtherwise').checked = data..gemaBackingOtherwise;
+    document.getElementById('contactPerson').value = data.contact.person;
+    document.getElementById('contactEmail').value = data.contact.email;
+    document.getElementById('contactPhone').value = data.contact.phone;
+    document.getElementById('flyerUrl').value = data.publish.url;
+    document.getElementById('publishCalendar').checked = data.publish.calendar;
 }
 
 function toDict()
