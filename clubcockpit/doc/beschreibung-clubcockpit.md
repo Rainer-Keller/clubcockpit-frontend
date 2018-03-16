@@ -13,7 +13,7 @@ Im Club-Cockit können Club-Vertreter folgende Information verarbeiten:
 * Abstimmungen
 
 
-Veranstaltungen eingeben
+Veranstaltungs-Assistent
 ------------------------
 
 Die Anmeldung eines Events erfolgt schrittweise.
