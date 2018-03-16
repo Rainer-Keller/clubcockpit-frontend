@@ -250,14 +250,6 @@ Die Anmeldung eines Events erfolgt schrittweise.
 
         Freitext, darf nicht leer sein
 
-    * Email
-
-        Freitext, darf nicht leer sein
-
-    * Telefon
-
-        Freitext, darf nicht leer sein
-
 ### Schritt 8: Verföffentlichungen
 
 * Anzeige

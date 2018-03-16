@@ -817,9 +817,7 @@ function fromDict(data)
     }
 
     document.getElementById('gemabackingOtherwise').checked = data..gemaBackingOtherwise;
-    document.getElementById('contactPerson').value = data.contact.person;
-    document.getElementById('contactEmail').value = data.contact.email;
-    document.getElementById('contactPhone').value = data.contact.phone;
+    document.getElementById('contactData').value = data.contact;
     document.getElementById('flyerUrl').value = data.publish.url;
     document.getElementById('publishCalendar').checked = data.publish.calendar;
 }
@@ -865,10 +863,7 @@ function toDict()
         event.special.halls = getHalls();
     }
     event.gemaBackingOtherwise = document.getElementById('gemabackingOtherwise').checked;
-    event.contact = {};
-    event.contact.person = document.getElementById('contactPerson').value;
-    event.contact.email = document.getElementById('contactEmail').value;
-    event.contact.phone = document.getElementById('contactPhone').value;
+    event.contact = document.getElementById('contactData').value;
     event.publish = {};
     event.publish.url = document.getElementById('flyerUrl').value;
     event.publish.calendar = document.getElementById('publishCalendar').checked;
