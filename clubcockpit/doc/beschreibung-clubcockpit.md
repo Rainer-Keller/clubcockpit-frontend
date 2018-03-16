@@ -281,60 +281,40 @@ Die Anmeldung eines Events erfolgt schrittweise.
     * Anzeige der eingegebenen Daten zur Kontrolle
 
 
-Datenstruktur
+Datenaustausch
 ---
 
-Die Übertragung eines Datensatzes in JavaScript oder JSON hat folgende Struktur:
+Für den Datenaustausch gibt es definierte Datenschnittstellen.
+Das Datenformat ist als [JSON-Schema](http://json-schema.org) definiert, was eine
+automatische Prüfung der formellen Korrektheit der Daten ermöglicht.
 
-<pre>
-```
-{
-    version: integer, Version der Datensatzstruktur
-    type: string, [ "S", "SCN", "CCN", "WS", "C"]
-    title: string
-    location: {
-                  name: string
-                  address: string
-                  postcode: string
-                  city: string
-                  country: string, [ "AT", "BE", "CH", "DE", "FR", "LI", "NL", "RU", "SK" ]
-    }
-    dates: [
-             [ date, endDate] // endDate is optional
-    ]
-    leader: [ string ]
-    dancelevels: [ string ]
-    class : { // optional
-        type: string
-        openHouseDates: [ date as string ]
-        weekday: string, [ "mo","tu","we","th","fr","sa","su",xx"]
-        time: string
-        duringClubnight: bool
-        endsWithGraduation: bool
-        studentCount: integer
-    }
-    ccn: { // optional
-          dateMoved: date as string
-    }
-    workshop: { // optional
-          size: string ["mini", "midi", "maxi", "super]
-          type: string ["weekend", "dancer", "leader"]
-          participants: integer
-          revenue: integer
-    }
-    special: { // optional
-          halls: [ integer ]
-    }
-    gemaBackingOtherwise: bool
-    contact: {
-        person: string
-        email: string
-        phone: string
-    }
-    publish: {
-        url: string
-        calendar: bool
-    }
-}
-```
-</pre>
+Für Eventdaten, die von Clubvertretern editiert werden gilt das Schema in
+_eventdata.schema_.
+
+Für Daten der EAASDC Buchhaltung gilt das Schema in _eventinternal.schema_.
+
+Für eine Zusammenfassende Übersicht gilt das Schema in _eventsummary.schema_.
+
+Datenabfrage
+---
+
+Auf Serverseite gibt es mehrere URLs von denen Daten abgefragt werden können.
+
+#### Nächste Events
+
+Dies liefert ein Zusammenfassung der demnächst anstehenden Events.
+Die Abfrage URL ist ```?nextEvents=<integer>```. Als Parameter kann eine Zahl zwischen 0 und 30 angegeben werden, welche die Anzahl der gewünschten
+Events angibt. Die Antwort hat das Format, welches in eventinternal.schema definiert ist.
+
+### Events eines Clubs
+
+Dies liefert ein Zusammenfassung der Events eines bestimmten Clubs.
+Die Abfrage URL ist ```?clubEvents=<Clubnummer>```. Als Parameter wird die Clubnumer angegeben.
+Die Antwort hat das Format, welches in eventinternal.schema definiert ist.
+
+### Details zu einem Event
+
+Dies liefert alle vom Clubvertretern eigegebenen Details zu einem bestimmten Event.
+Die Abfrage URL ist ```?eventInfo=<Eventnummer>```. Als Parameter wird die Nummer des Events angegeben.
+Die Antwort hat das Format, welches in eventdata.schema definiert ist.
+

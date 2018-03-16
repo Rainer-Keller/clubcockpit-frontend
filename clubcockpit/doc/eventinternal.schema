@@ -1,0 +1,69 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Event Internal Data",
+    "description": "Internal data for bookkeeping",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "Event database identifier",
+            "type": "string",
+            "minLength": 12
+        },
+        "version": {
+            "description": "Version of data structure",
+            "type": "integer"
+        },
+        "contact": {
+            "description": "Contact person for this event",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "Name of the contact",
+                    "type": "string",
+                    "minLength": 3
+                },
+                "address": {
+                    "description": "Address of the contact",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "postcode": {
+                    "description": "Postcode of the contact address",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "city": {
+                    "description": "City of the contact address",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "country": {
+                    "description": "Country of the contact address",
+                    "type": "string",
+                    "enum": ["AT", "BE", "CH", "DE", "FR", "LI", "NL", "RU", "SK"]
+                },
+                "email": {
+                    "description": "Email of the contact address",
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "Phone number of the contact",
+                    "type": "string"
+                }
+            },
+            "required": [ "name", "address", "postcode", "country", "city", "phone", "email"]
+        },
+        "gemaContribution": {
+            "description": "Amount of GEMA contribution in €",
+            "type": "number",
+            "minimum": 0,
+            "multipleOf": 0.01
+        },
+        "saldo": {
+            "description": "Event saldo in €",
+            "type": "number",
+            "multipleOf": 0.01
+        },
+        "required": ["id","version", "contact", "gemaContribution", "saldo"]
+    }
+}

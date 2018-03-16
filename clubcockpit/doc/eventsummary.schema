@@ -1,0 +1,113 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Event Summary",
+    "description": "Summary data for display",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "description": "One event data object",
+        "properties": {
+            "id": {
+                "description": "Event database identifier",
+                "type": "string",
+                "minLength": 12
+            },
+            "version": {
+                "description": "Version of data structure",
+                "type": "integer"
+            },
+            "type": {
+                "description": "Type of the event",
+                "type": "string",
+                "enum": ["S", "SCN", "CCN", "WS", "C"]
+            },
+            "title": {
+                "description": "Name of the event",
+                "type": "string",
+                "minLength": 3
+            },
+            "location": {
+                "description": "Describes the location of the event",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Name of the location",
+                        "type": "string",
+                        "minLength": 3
+                    },
+                    "address": {
+                        "description": "Street and house number of the location",
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "postcode": {
+                        "description": "Postcode of the location",
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "city": {
+                        "description": "City of the location",
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "country": {
+                        "description": "Country of the location",
+                        "type": "string",
+                        "enum": ["AT", "BE", "CH", "DE", "FR", "LI", "NL", "RU", "SK"]
+                    }
+                },
+                "required": [ "name", "country", "city"]
+            },
+            "dates": {
+                "description": "Dates of the event",
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "description": "One set of start and enddate, first element is start date, second is enddate",
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 2,
+                    "items": {
+                          "type": "string",
+                          "pattern": "^[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$"
+                      }
+                  }
+            },
+            "leader": {
+                "description": "Leader of the event",
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "minLength": 3
+                  }
+            },
+            "dancelevels": {
+                "description": "Dancelevel of the event",
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                    "type": "string",
+                    "enum": ["B", "MS", "PL", "A1", "A2", "C1", "C2", "C3a", "C3b", "C4",
+                            "Phase I", "Phase II", "Phase III", "Phase IV", "Phase V", "Phase VI", "Phase VII",
+                            "Contra", "Traditional", "Clogging", "Line Dance"
+                    ]
+                }
+            },
+            "contact": {
+                "description": "Contact data",
+                "type": "string"
+            },
+            "url": {
+                "description": "URL to website or flyer",
+                "type": "string"
+            },
+            "clubname": {
+                "description": "Club name",
+                "type": "string",
+                "minLength": 3
+            }
+        },
+        "required": ["id", "version", "type", "title", "location", "dates", "leader", "dancelevels", "contact", "url", "clubname"]
+    }
+}

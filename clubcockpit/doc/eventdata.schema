@@ -59,45 +59,37 @@
             "description": "Dates of the event",
             "type": "array",
             "minItems": 1,
-            "items": [
-              {
+            "items": {
                 "description": "One set of start and enddate, first element is start date, second is enddate",
                 "type": "array",
                 "minItems": 1,
                 "maxItems": 2,
-                "items": [
-                  {
+                "items": {
                       "type": "string",
                       "pattern": "^[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$"
                   }
-                ]
               }
-           ]
         },
         "leader": {
             "description": "Leader of the event",
             "type": "array",
-            "items": [
-              {
+            "items": {
                 "type": "string",
                 "minLength": 3
               }
-            ]
         },
         "dancelevels": {
             "description": "Dancelevel of the event",
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
-            "items": [
-                {
+            "items": {
                     "type": "string",
                     "enum": ["B", "MS", "PL", "A1", "A2", "C1", "C2", "C3a", "C3b", "C4",
                             "Phase I", "Phase II", "Phase III", "Phase IV", "Phase V", "Phase VI", "Phase VII",
                             "Contra", "Traditional", "Clogging", "Line Dance"
                     ]
                 }
-            ]
         },
         "class": {
             "description": "Class information data",
@@ -110,13 +102,11 @@
                 "openHouseDates": {
                     "type": "array",
                     "maxItems": 4,
-                    "items": [
-                        {
-                            "description": "Date of the Open House",
-                            "type": "string",
-                            "pattern": "^[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$"
-                        }
-                    ]
+                    "items": {
+                        "description": "Date of the Open House",
+                        "type": "string",
+                        "pattern": "^[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$"
+                    }
                 },
                 "weekday": {
                     "description": "Weekday of the class",
@@ -190,13 +180,11 @@
                     "description": "Number of halls for each day",
                     "type": "array",
                     "minItems": 1,
-                    "items": [
-                      {
+                    "items": {
                           "description": "Number of halls for one day",
                           "type": "integer",
                           "minimum": 0
                       }
-                    ]
                 }
             },
             "required": ["halls"]
@@ -248,5 +236,5 @@
             }
         }
     },
-    "required": ["version", "type", "title", "location", "dates", "leader", "dancelevels", "gemaBackingOtherwise", "publish", "contact", "club"]
+    "required": ["id", "version", "type", "title", "location", "dates", "leader", "dancelevels", "gemaBackingOtherwise", "publish", "contact", "club"]
 }
