@@ -140,7 +140,7 @@
               <input type="time" id="time">
             </div>
             <div class="form-group">
-              <label for="description">Beschreibung:</label>
+              <label for="description">Veranstalter:</label>
               <input type="text" class="form-control" id="description">
             </div>
             <div style="color:red" id="errors">
@@ -160,7 +160,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Event löschen</h4>
+            <h4 class="modal-title">Event stornieren</h4>
           </div>
           <div class="modal-body">
             <p>Soll das Event</p>
@@ -168,7 +168,7 @@
             <p>wirklich gelöscht werden?</p>
           </div>
           <div class="modal-footer">
-            <button id="ok" type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-trash"></span> Löschen</button>
+            <button id="ok" type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-trash"></span> Stornieren</button>
             <button id="abort" type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-remove"></span> Schließen</button>
           </div>
         </div>
@@ -390,7 +390,7 @@
 
             <div class="form-group">
               <div class="col-sm-8">
-                <label for="classTime">Zeit</label>
+                <label for="classTime">Beginn</label>
                 <input type="text" class="form-control" id="classTime" placeholder="00:00" data-serialize="1" data-validate="validateTime">
               </div>
             </div>
