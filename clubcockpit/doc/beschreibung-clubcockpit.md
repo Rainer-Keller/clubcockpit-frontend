@@ -304,17 +304,17 @@ Auf Serverseite gibt es mehrere URLs von denen Daten abgefragt werden können.
 
 Dies liefert ein Zusammenfassung der demnächst anstehenden Events.
 Die Abfrage URL ist ```?nextEvents=<integer>```. Als Parameter kann eine Zahl zwischen 0 und 30 angegeben werden, welche die Anzahl der gewünschten
-Events angibt. Die Antwort hat das Format, welches in eventinternal.schema definiert ist.
+Events angibt. Die Antwort hat das Format, welches in _eventsummary.schema_ definiert ist.
 
 ### Events eines Clubs
 
 Dies liefert ein Zusammenfassung der Events eines bestimmten Clubs.
 Die Abfrage URL ist ```?clubEvents=<Clubnummer>```. Als Parameter wird die Clubnumer angegeben.
-Die Antwort hat das Format, welches in eventinternal.schema definiert ist.
+Die Antwort hat das Format, welches in _eventsummary.schema_ definiert ist.
 
 ### Details zu einem Event
 
 Dies liefert alle vom Clubvertretern eigegebenen Details zu einem bestimmten Event.
 Die Abfrage URL ist ```?eventInfo=<Eventnummer>```. Als Parameter wird die Nummer des Events angegeben.
-Die Antwort hat das Format, welches in eventdata.schema definiert ist.
+Die Antwort hat das Format, welches in _eventdata.schema_ definiert ist.
 
