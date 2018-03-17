@@ -314,7 +314,6 @@ $(document).ready(function() {
   $('#ccnDateMoved').datepicker();
   fetchCaller();
   initializeDialog();
-  createNewEvent();
 });
 
 function validateNotEmpty(el) {
@@ -816,7 +815,7 @@ function fromDict(data)
         }
     }
 
-    document.getElementById('gemabackingOtherwise').checked = data..gemaBackingOtherwise;
+    document.getElementById('gemabackingOtherwise').checked = data.gemaBackingOtherwise;
     document.getElementById('contactData').value = data.contact;
     document.getElementById('flyerUrl').value = data.publish.url;
     document.getElementById('publishCalendar').checked = data.publish.calendar;
