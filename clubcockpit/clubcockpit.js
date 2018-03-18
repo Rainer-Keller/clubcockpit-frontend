@@ -792,7 +792,8 @@ function fromDict(data)
         eventDateAddDateItem(date[i][0], date[i][1]);
 
     $('#leader').val(null).trigger('change');
-    $('#leader').val(data.leader).trigger('change');
+    for (var i = 0; i < data.leader; i++)
+        addSelect2Option('#leader', data.leader[i], data.leader[i]);
 
     $('#dancelevels').val(null).trigger('change');
     for (var i = 0; i < data.dancelevels; i++)
