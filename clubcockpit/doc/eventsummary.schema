@@ -88,10 +88,7 @@
                 "uniqueItems": true,
                 "items": {
                     "type": "string",
-                    "enum": ["B", "MS", "PL", "A1", "A2", "C1", "C2", "C3a", "C3b", "C4",
-                            "Phase I", "Phase II", "Phase III", "Phase IV", "Phase V", "Phase VI", "Phase VII",
-                            "Contra", "Traditional", "Clogging", "Line Dance"
-                    ]
+                    "minlength": 1
                 }
             },
             "contact": {

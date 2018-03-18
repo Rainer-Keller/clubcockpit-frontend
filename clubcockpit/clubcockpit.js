@@ -755,6 +755,19 @@ function previewFlyerUrl()
     window.open(url, 'Flyer-Vorschau', 'status=no,titlebar=no,toolbar=no');
 }
 
+function addSelect2Option(id, data, text)
+{
+    // Set the value, creating a new option if necessary
+    if ($(id).find("option[value='" + data + "']").length) {
+        $(id).val(data.id).trigger('change');
+    } else {
+        // Create a DOM Option and pre-select by default
+        var newOption = new Option(text, data, true, true);
+        // Append it to the select
+        $(id).append(newOption).trigger('change');
+    }
+}
+
 function fromDict(data)
 {
     if (data.version !== 1) {
@@ -782,7 +795,8 @@ function fromDict(data)
     $('#leader').val(data.leader).trigger('change');
 
     $('#dancelevels').val(null).trigger('change');
-    $('#dancelevels').val(data.dancelevels).trigger('change');
+    for (var i = 0; i < data.dancelevels; i++)
+        addSelect2Option('#dancelevels', data.dancelevels[i], data.dancelevels[i]);
 
     if (data.class) {
         document.getElementById('classType').value = data.class.type;
